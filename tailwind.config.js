@@ -3,6 +3,9 @@ export default {
   theme: {
     extend: {
       colors: {},
+      fontFamily: {
+        virgil: ['Virgil', 'sans-serif'],
+      },
     },
   },
   plugins: [],
