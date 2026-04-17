@@ -1,10 +1,6 @@
 import React from 'react';
 
-type ButtonProps = {
-  children: React.ReactNode;
-};
-
-export const Button = ({ children }: ButtonProps) => {
+export const Button = ({ children }: { children: React.ReactNode }) => {
   return (
     <button className="bg-primary rounded-xl px-4 py-2 text-white">
       {children}

@@ -2,33 +2,43 @@
   "name": "handwritten-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
-  "module": "dist/index.mjs",
   "sideEffects": false,
   "files": [
     "dist"
   ],
+  "bin": {
+    "handwritten-ui": "dist/index.js"
+  },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && npm run copy",
     "dev": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "copy": "cpx \"src/templates/**/*\" dist/templates"
   },
   "keywords": [],
-  "author": "",
+  "author": "cakjengger@gmail.com",
   "license": "ISC",
   "packageManager": "pnpm@10.29.2",
   "dependencies": {
+    "chalk": "^5.6.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "commander": "^14.0.3",
+    "fs-extra": "^11.3.4",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/fs-extra": "^11.0.4",
     "@types/react": "^19.2.14",
     "autoprefixer": "^10.5.0",
+    "cpx": "^1.5.0",
     "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
@@ -45,5 +55,8 @@
     "tsup": "^8.5.1",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.2"
+  },
+  "patchedDependencies": {
+    "tsup@8.5.1": "patches/tsup@8.5.1.patch"
   }
 }
