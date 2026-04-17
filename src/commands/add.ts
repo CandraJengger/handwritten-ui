@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 export default async function add(component: string) {
   if (component === 'button') {
-    const templatePath = './templates/button.tsx';
+    const templatePath = '../templates/button.tsx';
 
     const targetDir = 'src/components/ui';
     const targetPath = path.join(targetDir, 'button.tsx');
