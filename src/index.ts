@@ -8,7 +8,10 @@ const program = new Command();
 
 program.name('handwritten-ui').description('CLI for handwritten-ui library');
 
-program.command('init').description('Initialize Tailwind').action(init);
+program
+  .command('init [template]')
+  .description('Initialize handwritten ui')
+  .action((template) => init({ template }));
 
 program.command('add <component>').description('Add a component').action(add);
 

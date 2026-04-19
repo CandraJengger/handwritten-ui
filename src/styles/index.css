@@ -6,6 +6,8 @@
   font-display: swap;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-virgil: 'Virgil', sans-serif;
+}
