@@ -1,4 +1,3 @@
-import { cn } from '@/lib/styles';
 import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
 
@@ -119,18 +118,7 @@ export function Button({
   const content = (
     <div
       ref={btnRef}
-      className={cn(
-        'rough-btn',
-        className,
-        'relative',
-        'cursor-pointer',
-        'items-center',
-        'justify-center',
-        'select-none',
-        sizeClasses[size],
-        roundedClasses[rounded],
-        fullWidth ? 'flex' : 'inline-flex',
-      )}
+      className={`rough-btn ${className} relative cursor-pointer items-center justify-center select-none ${sizeClasses[size]} ${roundedClasses[rounded]} ${fullWidth ? 'flex' : 'inline-flex'}`.trim()}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -139,17 +127,7 @@ export function Button({
         className="pointer-events-none absolute top-0 left-0 h-full w-full"
       />
       <span
-        className={cn(
-          'font-virgil',
-          'relative',
-          'z-[1]',
-          fontSizeClasses[size],
-          textColorClass,
-          'tracking-[0.02em]',
-          'whitespace-nowrap',
-          'transition-colors',
-          'duration-200',
-        )}
+        className={`font-virgil relative z-[1] ${fontSizeClasses[size]} ${textColorClass} tracking-[0.02em] whitespace-nowrap transition-colors duration-200`}
       >
         {label}
       </span>
@@ -160,7 +138,7 @@ export function Button({
     return (
       <a
         href={href}
-        className={cn('no-underline', fullWidth ? 'block' : 'inline-block')}
+        className={`no-underline ${fullWidth ? 'block' : 'inline-block'}`}
       >
         {content}
       </a>
@@ -170,13 +148,7 @@ export function Button({
   return (
     <button
       onClick={onClick}
-      className={cn(
-        'cursor-pointer',
-        'border-none',
-        'bg-transparent',
-        'p-0',
-        fullWidth ? 'block w-full' : 'inline-block w-auto',
-      )}
+      className={`cursor-pointer border-none bg-transparent p-0 ${fullWidth ? 'block w-full' : 'inline-block w-auto'}`}
     >
       {content}
     </button>
