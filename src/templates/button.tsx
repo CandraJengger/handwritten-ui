@@ -1,3 +1,4 @@
+import { cn } from '@/lib/styles';
 import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
 
@@ -7,6 +8,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: 'filled' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  rounded?: 'none' | 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   className?: string;
 }
@@ -23,6 +25,31 @@ const fontSizeClasses: Record<string, string> = {
   lg: 'text-[1.1rem]',
 };
 
+const roundedClasses: Record<string, string> = {
+  none: 'rounded-none',
+  sm: 'rounded-sm',
+  md: 'rounded-md',
+  lg: 'rounded-lg',
+};
+
+const roundedValues: Record<string, number> = {
+  none: 0,
+  sm: 4,
+  md: 8,
+  lg: 12,
+};
+
+function getRoundedRectPath(
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number,
+) {
+  const radius = Math.min(r, w / 2, h / 2);
+  return `M ${x + radius} ${y} h ${w - 2 * radius} a ${radius} ${radius} 0 0 1 ${radius} ${radius} v ${h - 2 * radius} a ${radius} ${radius} 0 0 1 -${radius} ${radius} h -${w - 2 * radius} a ${radius} ${radius} 0 0 1 -${radius} -${radius} v -${h - 2 * radius} a ${radius} ${radius} 0 0 1 ${radius} -${radius} z`;
+}
+
 export function Button({
   label,
   href,
@@ -31,6 +58,7 @@ export function Button({
   size = 'md',
   fullWidth = false,
   className = '',
+  rounded = 'none',
 }: ButtonProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
@@ -53,34 +81,56 @@ export function Button({
 
     const roughness = hovered ? 2.5 : 1.2;
     const bowing = hovered ? 2 : 0.5;
+    const radius = roundedValues[rounded] || 0;
+
+    const baseOptions = {
+      roughness,
+      bowing,
+      stroke: '#333333',
+      strokeWidth: 2,
+      fillStyle: 'solid',
+    };
 
     if (variant === 'filled') {
-      rc.rectangle(2, 2, w - 4, h - 4, {
+      const options = {
+        ...baseOptions,
         fill: '#333333',
-        fillStyle: 'solid',
-        stroke: '#333333',
-        strokeWidth: 2,
-        roughness,
-        bowing,
-      });
+      };
+      if (radius > 0) {
+        rc.path(getRoundedRectPath(2, 2, w - 4, h - 4, radius), options);
+      } else {
+        rc.rectangle(2, 2, w - 4, h - 4, options);
+      }
     } else {
-      rc.rectangle(2, 2, w - 4, h - 4, {
-        stroke: '#333333',
-        strokeWidth: 2,
+      const options = {
+        ...baseOptions,
         fill: hovered ? 'rgba(51,51,51,0.06)' : 'transparent',
-        fillStyle: 'solid',
-        roughness,
-        bowing,
-      });
+      };
+      if (radius > 0) {
+        rc.path(getRoundedRectPath(2, 2, w - 4, h - 4, radius), options);
+      } else {
+        rc.rectangle(2, 2, w - 4, h - 4, options);
+      }
     }
-  }, [hovered, variant, size]);
+  }, [hovered, variant, size, rounded]);
 
   const textColorClass = variant === 'filled' ? 'text-white' : 'text-ink';
 
   const content = (
     <div
       ref={btnRef}
-      className={`rough-btn ${className} relative cursor-pointer items-center justify-center select-none ${sizeClasses[size]} ${fullWidth ? 'flex' : 'inline-flex'}`}
+      className={cn(
+        'rough-btn',
+        className,
+        'relative',
+        'cursor-pointer',
+        'items-center',
+        'justify-center',
+        'select-none',
+        sizeClasses[size],
+        roundedClasses[rounded],
+        fullWidth ? 'flex' : 'inline-flex',
+      )}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -89,7 +139,17 @@ export function Button({
         className="pointer-events-none absolute top-0 left-0 h-full w-full"
       />
       <span
-        className={`font-virgil relative z-[1] ${fontSizeClasses[size]} ${textColorClass} tracking-[0.02em] whitespace-nowrap transition-colors duration-200`}
+        className={cn(
+          'font-virgil',
+          'relative',
+          'z-[1]',
+          fontSizeClasses[size],
+          textColorClass,
+          'tracking-[0.02em]',
+          'whitespace-nowrap',
+          'transition-colors',
+          'duration-200',
+        )}
       >
         {label}
       </span>
@@ -100,7 +160,7 @@ export function Button({
     return (
       <a
         href={href}
-        className={`no-underline ${fullWidth ? 'block' : 'inline-block'}`}
+        className={cn('no-underline', fullWidth ? 'block' : 'inline-block')}
       >
         {content}
       </a>
@@ -110,7 +170,13 @@ export function Button({
   return (
     <button
       onClick={onClick}
-      className={`cursor-pointer border-none bg-transparent p-0 ${fullWidth ? 'block w-full' : 'inline-block w-auto'}`}
+      className={cn(
+        'cursor-pointer',
+        'border-none',
+        'bg-transparent',
+        'p-0',
+        fullWidth ? 'block w-full' : 'inline-block w-auto',
+      )}
     >
       {content}
     </button>
