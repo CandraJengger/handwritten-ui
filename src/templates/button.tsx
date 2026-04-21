@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: 'filled' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   rounded?: 'none' | 'sm' | 'md' | 'lg';
+  border?: 'normal' | 'rough' | 'hachure';
   fullWidth?: boolean;
   className?: string;
 }
@@ -58,12 +59,15 @@ export function Button({
   fullWidth = false,
   className = '',
   rounded = 'none',
+  border = 'rough',
 }: ButtonProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
+    if (border === 'normal') return;
+
     const canvas = canvasRef.current;
     const btn = btnRef.current;
     if (!canvas || !btn) return;
@@ -87,7 +91,9 @@ export function Button({
       bowing,
       stroke: '#333333',
       strokeWidth: 2,
-      fillStyle: 'solid',
+      fillStyle: border === 'hachure' ? 'hachure' : 'solid',
+      hachureAngle: -41,
+      hachureGap: 4,
     };
 
     if (variant === 'filled') {
@@ -111,21 +117,31 @@ export function Button({
         rc.rectangle(2, 2, w - 4, h - 4, options);
       }
     }
-  }, [hovered, variant, size, rounded]);
+  }, [hovered, variant, size, rounded, border]);
 
   const textColorClass = variant === 'filled' ? 'text-white' : 'text-ink';
+
+  const getNormalStyles = () => {
+    if (border !== 'normal') return '';
+    if (variant === 'filled') {
+      return 'bg-[#333333] border-2 border-[#333333] transition-colors duration-200';
+    }
+    return 'bg-transparent border-2 border-[#333333] hover:bg-black/5 transition-colors duration-200';
+  };
 
   const content = (
     <div
       ref={btnRef}
-      className={`rough-btn ${className} relative cursor-pointer items-center justify-center select-none ${sizeClasses[size]} ${roundedClasses[rounded]} ${fullWidth ? 'flex' : 'inline-flex'}`.trim()}
+      className={`rough-btn ${className} relative cursor-pointer items-center justify-center select-none ${sizeClasses[size]} ${roundedClasses[rounded]} ${getNormalStyles()} ${fullWidth ? 'flex' : 'inline-flex'}`.trim()}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute top-0 left-0 h-full w-full"
-      />
+      {border !== 'normal' && (
+        <canvas
+          ref={canvasRef}
+          className="pointer-events-none absolute top-0 left-0 h-full w-full"
+        />
+      )}
       <span
         className={`font-virgil relative z-[1] ${fontSizeClasses[size]} ${textColorClass} tracking-[0.02em] whitespace-nowrap transition-colors duration-200`}
       >
