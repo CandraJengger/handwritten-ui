@@ -5,9 +5,12 @@ import path from 'path';
 
 export function viteConfig() {
   // 1. install dependencies
-  execSync('npm install -D tailwindcss @tailwindcss/vite roughjs', {
-    stdio: 'inherit',
-  });
+  execSync(
+    'npm install -D tailwindcss @tailwindcss/vite roughjs lucide-react',
+    {
+      stdio: 'inherit',
+    },
+  );
 
   // 2. create CSS file
   const css = `

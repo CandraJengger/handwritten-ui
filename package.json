@@ -29,6 +29,7 @@
     "clsx": "^2.1.1",
     "commander": "^14.0.3",
     "fs-extra": "^11.3.4",
+    "lucide-react": "^1.8.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "roughjs": "^4.6.6",

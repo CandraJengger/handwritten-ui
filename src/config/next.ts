@@ -5,9 +5,12 @@ import path from 'path';
 
 export function nextConfig() {
   // 1. install dependencies
-  execSync('npm install -D tailwindcss postcss @tailwindcss/postcss roughjs', {
-    stdio: 'inherit',
-  });
+  execSync(
+    'npm install -D tailwindcss postcss @tailwindcss/postcss roughjs lucide-react',
+    {
+      stdio: 'inherit',
+    },
+  );
 
   // 2. create CSS file
   const css = `

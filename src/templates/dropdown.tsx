@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
+import { ChevronDown } from 'lucide-react';
 
 interface DropdownProps {
   label: string;
@@ -106,19 +107,9 @@ export function Dropdown({
         }`}
       >
         {label}
-        <svg
+        <ChevronDown
           className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="19 9l-7 7-7-7"
-          />
-        </svg>
+        />
       </button>
 
       {isOpen && (

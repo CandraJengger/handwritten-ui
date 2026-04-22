@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import rough from 'roughjs';
+import { ChevronDown } from 'lucide-react';
 
 // --- Context ---
 interface SelectContextType {
@@ -144,25 +145,6 @@ export function SelectTrigger({
     } else {
       rc.rectangle(2, 2, w - 4, h - 4, options);
     }
-
-    // Draw Arrow
-    const arrowSize = 6;
-    const arrowX = w - 20;
-    const arrowY = h / 2 - (isOpen ? -2 : 2);
-    rc.linearPath(
-      isOpen
-        ? [
-            [arrowX, arrowY + arrowSize],
-            [arrowX + arrowSize / 2, arrowY],
-            [arrowX + arrowSize, arrowY + arrowSize],
-          ]
-        : [
-            [arrowX, arrowY],
-            [arrowX + arrowSize / 2, arrowY + arrowSize],
-            [arrowX + arrowSize, arrowY],
-          ],
-      { ...options, strokeWidth: 2 },
-    );
   }, [isOpen, hovered, rounded]);
 
   return (
@@ -176,6 +158,9 @@ export function SelectTrigger({
       className={`font-virgil relative flex h-10 w-full items-center justify-between bg-transparent px-3 py-2 text-sm transition-all duration-200 outline-none ${className || ''}`.trim()}
     >
       <div className="relative z-10 flex items-center gap-2">{children}</div>
+      <ChevronDown
+        className={`relative z-10 h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+      />
       <canvas
         ref={canvasRef}
         className="pointer-events-none absolute top-0 left-0 h-full w-full"
