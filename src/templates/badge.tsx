@@ -7,6 +7,7 @@ interface BadgeProps {
   children: React.ReactNode;
   variant?: BadgeVariant;
   color?: string;
+  border?: 'none' | 'rough';
   className?: string;
 }
 
@@ -14,12 +15,14 @@ export function Badge({
   children,
   variant = 'default',
   color = '#333333',
+  border = 'rough',
   className = '',
 }: BadgeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (border === 'none') return;
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -48,19 +51,46 @@ export function Badge({
       hachureGap: 3,
       fillWeight: isSolid ? 3 : 1,
     });
-  }, [variant, color]);
+  }, [variant, color, border]);
 
   const textColor = variant === 'solid' ? 'text-white' : '';
+
+  const getNormalStyles = () => {
+    if (border !== 'none') return '';
+
+    const base =
+      'rounded-md px-2.5 py-0.5 border-2 transition-colors duration-200';
+    if (variant === 'solid') {
+      return `${base} bg-[${color}] border-[${color}] text-white`;
+    }
+    if (variant === 'outline') {
+      return `${base} bg-transparent border-[${color}]`;
+    }
+    // Default or hachure fallback to a light background or just transparent if no roughjs
+    return `${base} bg-[${color}]15 border-[${color}]`;
+  };
 
   return (
     <div
       ref={containerRef}
-      className={`relative inline-flex items-center px-2.5 py-0.5 ${className}`.trim()}
+      className={`relative inline-flex items-center px-2.5 py-0.5 ${getNormalStyles()} ${className}`.trim()}
+      style={{
+        borderColor: border === 'none' ? color : undefined,
+        backgroundColor:
+          border === 'none' && variant === 'solid'
+            ? color
+            : border === 'none' &&
+                (variant === 'default' || variant === 'hachure')
+              ? `${color}15`
+              : undefined,
+      }}
     >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute top-0 left-0 h-full w-full"
-      />
+      {border !== 'none' && (
+        <canvas
+          ref={canvasRef}
+          className="pointer-events-none absolute top-0 left-0 h-full w-full"
+        />
+      )}
       <span
         className={`font-virgil relative z-10 text-xs font-bold tracking-wider ${textColor}`}
         style={{ color: variant === 'solid' ? undefined : color }}
