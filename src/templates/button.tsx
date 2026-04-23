@@ -11,6 +11,7 @@ interface ButtonProps {
   border?: 'normal' | 'rough' | 'hachure';
   fullWidth?: boolean;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const sizeClasses: Record<string, string> = {
@@ -60,6 +61,7 @@ export function Button({
   className = '',
   rounded = 'none',
   border = 'rough',
+  type = 'button',
 }: ButtonProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
@@ -165,6 +167,7 @@ export function Button({
     <button
       onClick={onClick}
       className={`cursor-pointer border-none bg-transparent p-0 ${fullWidth ? 'block w-full' : 'inline-block w-auto'}`}
+      type={type}
     >
       {content}
     </button>
