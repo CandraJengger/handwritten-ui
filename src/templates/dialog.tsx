@@ -122,7 +122,7 @@ export function DialogContent({
         stroke: '#333333',
         strokeWidth: 2,
       });
-    }, 20);
+    }, 50);
 
     return () => clearTimeout(timer);
   }, [open]);
@@ -156,7 +156,7 @@ export function DialogContent({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/40 transition-opacity"
+        className="animate-fade-in fixed inset-0 bg-black/40"
         onClick={() => setOpen(false)}
       />
 
@@ -165,7 +165,7 @@ export function DialogContent({
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        className={`relative z-50 w-full max-w-lg bg-white p-0 shadow-lg ${className}`.trim()}
+        className={`animate-dialog-in relative z-50 w-full max-w-lg bg-white p-0 shadow-lg ${className}`.trim()}
       >
         <canvas
           ref={canvasRef}
@@ -178,7 +178,7 @@ export function DialogContent({
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute top-4 right-4 z-20 cursor-pointer border-none bg-transparent p-1 text-[#666666] transition-colors duration-200 hover:text-[#333333]"
+          className="absolute top-4 right-4 z-20 cursor-pointer border-none bg-transparent p-1 text-[#666666] transition-all duration-200 hover:scale-110 hover:text-[#333333] active:scale-95"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
