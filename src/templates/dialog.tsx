@@ -59,39 +59,36 @@ export function Dialog({
 
 // ─── DialogTrigger ───────────────────────────────────────────────────────────
 
-interface DialogTriggerProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export function DialogTrigger({
-  children,
-  className = '',
-}: DialogTriggerProps) {
+export const DialogTrigger = React.forwardRef<
+  HTMLButtonElement,
+  DialogTriggerProps
+>(({ children, className = '', ...props }, ref) => {
   const { setOpen } = useDialog();
 
   return (
     <button
       type="button"
       onClick={() => setOpen(true)}
+      ref={ref}
       className={`cursor-pointer border-none bg-transparent p-0 ${className}`.trim()}
+      {...props}
     >
       {children}
     </button>
   );
-}
+});
+DialogTrigger.displayName = 'DialogTrigger';
 
 // ─── DialogContent ───────────────────────────────────────────────────────────
 
-interface DialogContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function DialogContent({
-  children,
-  className = '',
-}: DialogContentProps) {
+export const DialogContent = React.forwardRef<
+  HTMLDivElement,
+  DialogContentProps
+>(({ children, className = '', ...props }, forwardedRef) => {
   const { open, setOpen } = useDialog();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -104,6 +101,13 @@ export function DialogContent({
     const timer = setTimeout(() => {
       const canvas = canvasRef.current;
       const panel = panelRef.current;
+
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(panel);
+      } else if (forwardedRef) {
+        forwardedRef.current = panel;
+      }
+
       if (!canvas || !panel) return;
 
       const w = panel.offsetWidth;
@@ -125,7 +129,7 @@ export function DialogContent({
     }, 50);
 
     return () => clearTimeout(timer);
-  }, [open]);
+  }, [open, forwardedRef]);
 
   // Close on Escape
   useEffect(() => {
@@ -166,6 +170,7 @@ export function DialogContent({
         role="dialog"
         aria-modal="true"
         className={`animate-dialog-in relative z-50 w-full max-w-lg bg-white p-0 shadow-lg ${className}`.trim()}
+        {...props}
       >
         <canvas
           ref={canvasRef}
@@ -186,73 +191,83 @@ export function DialogContent({
       </div>
     </div>
   );
-}
+});
+DialogContent.displayName = 'DialogContent';
 
 // ─── DialogHeader ────────────────────────────────────────────────────────────
 
-interface DialogHeaderProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function DialogHeader({ children, className = '' }: DialogHeaderProps) {
-  return (
-    <div className={`flex flex-col gap-1.5 p-6 pb-0 ${className}`.trim()}>
-      {children}
-    </div>
-  );
-}
+export const DialogHeader = React.forwardRef<HTMLDivElement, DialogHeaderProps>(
+  ({ children, className = '', ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={`flex flex-col gap-1.5 p-6 pb-0 ${className}`.trim()}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+DialogHeader.displayName = 'DialogHeader';
 
 // ─── DialogTitle ─────────────────────────────────────────────────────────────
 
-interface DialogTitleProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 
-export function DialogTitle({ children, className = '' }: DialogTitleProps) {
+export const DialogTitle = React.forwardRef<
+  HTMLHeadingElement,
+  DialogTitleProps
+>(({ children, className = '', ...props }, ref) => {
   return (
     <h2
+      ref={ref}
       className={`font-virgil text-lg leading-none font-bold tracking-tight text-[#333333] ${className}`.trim()}
+      {...props}
     >
       {children}
     </h2>
   );
-}
+});
+DialogTitle.displayName = 'DialogTitle';
 
 // ─── DialogDescription ──────────────────────────────────────────────────────
 
-interface DialogDescriptionProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
-export function DialogDescription({
-  children,
-  className = '',
-}: DialogDescriptionProps) {
+export const DialogDescription = React.forwardRef<
+  HTMLParagraphElement,
+  DialogDescriptionProps
+>(({ children, className = '', ...props }, ref) => {
   return (
     <p
+      ref={ref}
       className={`font-virgil text-sm tracking-[0.01em] text-[#888888] ${className}`.trim()}
+      {...props}
     >
       {children}
     </p>
   );
-}
+});
+DialogDescription.displayName = 'DialogDescription';
 
 // ─── DialogFooter ────────────────────────────────────────────────────────────
 
-interface DialogFooterProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface DialogFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function DialogFooter({ children, className = '' }: DialogFooterProps) {
-  return (
-    <div
-      className={`flex items-center justify-end gap-3 p-6 pt-4 ${className}`.trim()}
-    >
-      {children}
-    </div>
-  );
-}
+export const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
+  ({ children, className = '', ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={`flex items-center justify-end gap-3 p-6 pt-4 ${className}`.trim()}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+DialogFooter.displayName = 'DialogFooter';

@@ -3,123 +3,134 @@ import rough from 'roughjs';
 
 // ─── Breadcrumb (root nav) ───────────────────────────────────────────────────
 
-interface BreadcrumbProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {}
 
-export function Breadcrumb({ children, className = '' }: BreadcrumbProps) {
-  return (
-    <nav aria-label="breadcrumb" className={`font-virgil ${className}`.trim()}>
-      {children}
-    </nav>
-  );
-}
+export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
+  ({ children, className = '', ...props }, ref) => {
+    return (
+      <nav
+        ref={ref}
+        aria-label="breadcrumb"
+        className={`font-virgil ${className}`.trim()}
+        {...props}
+      >
+        {children}
+      </nav>
+    );
+  },
+);
+Breadcrumb.displayName = 'Breadcrumb';
 
 // ─── BreadcrumbList ──────────────────────────────────────────────────────────
 
-interface BreadcrumbListProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface BreadcrumbListProps extends React.OlHTMLAttributes<HTMLOListElement> {}
 
-export function BreadcrumbList({
-  children,
-  className = '',
-}: BreadcrumbListProps) {
+export const BreadcrumbList = React.forwardRef<
+  HTMLOListElement,
+  BreadcrumbListProps
+>(({ children, className = '', ...props }, ref) => {
   return (
     <ol
+      ref={ref}
       className={`flex flex-wrap items-center gap-1.5 text-sm text-[#333333] ${className}`.trim()}
+      {...props}
     >
       {children}
     </ol>
   );
-}
+});
+BreadcrumbList.displayName = 'BreadcrumbList';
 
 // ─── BreadcrumbItem ──────────────────────────────────────────────────────────
 
-interface BreadcrumbItemProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface BreadcrumbItemProps extends React.LiHTMLAttributes<HTMLLIElement> {}
 
-export function BreadcrumbItem({
-  children,
-  className = '',
-}: BreadcrumbItemProps) {
+export const BreadcrumbItem = React.forwardRef<
+  HTMLLIElement,
+  BreadcrumbItemProps
+>(({ children, className = '', ...props }, ref) => {
   return (
-    <li className={`inline-flex items-center gap-1.5 ${className}`.trim()}>
+    <li
+      ref={ref}
+      className={`inline-flex items-center gap-1.5 ${className}`.trim()}
+      {...props}
+    >
       {children}
     </li>
   );
-}
+});
+BreadcrumbItem.displayName = 'BreadcrumbItem';
 
 // ─── BreadcrumbLink ──────────────────────────────────────────────────────────
 
-interface BreadcrumbLinkProps {
-  children: React.ReactNode;
-  href?: string;
-  className?: string;
+interface BreadcrumbLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   onClick?: () => void;
 }
 
-export function BreadcrumbLink({
-  children,
-  href,
-  className = '',
-  onClick,
-}: BreadcrumbLinkProps) {
+export const BreadcrumbLink = React.forwardRef<
+  HTMLAnchorElement,
+  BreadcrumbLinkProps
+>(({ children, href, className = '', onClick, ...props }, ref) => {
   return (
     <a
+      ref={ref}
       href={href}
       onClick={onClick}
       className={`font-virgil cursor-pointer tracking-[0.02em] text-[#666666] underline decoration-[#999999] decoration-wavy underline-offset-4 transition-colors duration-200 hover:text-[#333333] hover:decoration-[#333333] ${className}`.trim()}
+      {...props}
     >
       {children}
     </a>
   );
-}
+});
+BreadcrumbLink.displayName = 'BreadcrumbLink';
 
 // ─── BreadcrumbPage (current / non-clickable) ────────────────────────────────
 
-interface BreadcrumbPageProps {
-  children: React.ReactNode;
-  className?: string;
-}
+interface BreadcrumbPageProps extends React.HTMLAttributes<HTMLSpanElement> {}
 
-export function BreadcrumbPage({
-  children,
-  className = '',
-}: BreadcrumbPageProps) {
+export const BreadcrumbPage = React.forwardRef<
+  HTMLSpanElement,
+  BreadcrumbPageProps
+>(({ children, className = '', ...props }, ref) => {
   return (
     <span
+      ref={ref}
       role="link"
       aria-disabled="true"
       aria-current="page"
       className={`font-virgil font-bold tracking-[0.02em] text-[#333333] ${className}`.trim()}
+      {...props}
     >
       {children}
     </span>
   );
-}
+});
+BreadcrumbPage.displayName = 'BreadcrumbPage';
 
 // ─── BreadcrumbSeparator (rough line drawn on canvas) ────────────────────────
 
-interface BreadcrumbSeparatorProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+interface BreadcrumbSeparatorProps extends React.LiHTMLAttributes<HTMLLIElement> {}
 
-export function BreadcrumbSeparator({
-  children,
-  className = '',
-}: BreadcrumbSeparatorProps) {
+export const BreadcrumbSeparator = React.forwardRef<
+  HTMLLIElement,
+  BreadcrumbSeparatorProps
+>(({ children, className = '', ...props }, forwardedRef) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (children) return; // skip canvas if custom children provided
 
     const canvas = canvasRef.current;
+
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(canvas ? (canvas.parentElement as HTMLLIElement) : null); // Roughly forward to the li
+    } else if (forwardedRef) {
+      forwardedRef.current = canvas
+        ? (canvas.parentElement as HTMLLIElement)
+        : null;
+    }
+
     if (!canvas) return;
 
     const w = 12;
@@ -139,7 +150,7 @@ export function BreadcrumbSeparator({
       stroke: '#999999',
       strokeWidth: 1.5,
     });
-  }, [children]);
+  }, [children, forwardedRef]);
 
   if (children) {
     return (
@@ -147,6 +158,8 @@ export function BreadcrumbSeparator({
         role="presentation"
         aria-hidden="true"
         className={`inline-flex items-center text-[#999999] ${className}`.trim()}
+        ref={forwardedRef}
+        {...props}
       >
         {children}
       </li>
@@ -158,6 +171,8 @@ export function BreadcrumbSeparator({
       role="presentation"
       aria-hidden="true"
       className={`inline-flex items-center ${className}`.trim()}
+      ref={forwardedRef}
+      {...props}
     >
       <canvas
         ref={canvasRef}
@@ -166,21 +181,30 @@ export function BreadcrumbSeparator({
       />
     </li>
   );
-}
+});
+BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 
 // ─── BreadcrumbEllipsis ──────────────────────────────────────────────────────
 
-interface BreadcrumbEllipsisProps {
-  className?: string;
-}
+interface BreadcrumbEllipsisProps extends React.LiHTMLAttributes<HTMLLIElement> {}
 
-export function BreadcrumbEllipsis({
-  className = '',
-}: BreadcrumbEllipsisProps) {
+export const BreadcrumbEllipsis = React.forwardRef<
+  HTMLLIElement,
+  BreadcrumbEllipsisProps
+>(({ className = '', ...props }, forwardedRef) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(canvas ? (canvas.parentElement as HTMLLIElement) : null);
+    } else if (forwardedRef) {
+      forwardedRef.current = canvas
+        ? (canvas.parentElement as HTMLLIElement)
+        : null;
+    }
+
     if (!canvas) return;
 
     const w = 24;
@@ -205,13 +229,15 @@ export function BreadcrumbEllipsis({
         fillStyle: 'solid',
       });
     });
-  }, []);
+  }, [forwardedRef]);
 
   return (
     <li
       role="presentation"
       aria-hidden="true"
       className={`inline-flex items-center ${className}`.trim()}
+      ref={forwardedRef}
+      {...props}
     >
       <canvas
         ref={canvasRef}
@@ -221,4 +247,5 @@ export function BreadcrumbEllipsis({
       <span className="sr-only">More</span>
     </li>
   );
-}
+});
+BreadcrumbEllipsis.displayName = 'BreadcrumbEllipsis';

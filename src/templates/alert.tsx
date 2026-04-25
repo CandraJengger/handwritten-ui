@@ -4,11 +4,9 @@ import { Info, AlertCircle, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 type AlertVariant = 'default' | 'info' | 'warning' | 'error' | 'success';
 
-interface AlertProps {
-  children: React.ReactNode;
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: AlertVariant;
   title?: string;
-  className?: string;
 }
 
 const variantColors: Record<AlertVariant, string> = {
@@ -27,70 +25,79 @@ const variantIcons: Record<AlertVariant, React.ReactNode> = {
   success: <CheckCircle2 className="h-5 w-5" />,
 };
 
-export function Alert({
-  children,
-  variant = 'default',
-  title,
-  className,
-}: AlertProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    { children, variant = 'default', title, className, ...props },
+    forwardedRef,
+  ) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      const container = containerRef.current;
 
-    const w = container.offsetWidth;
-    const h = container.offsetHeight;
-    canvas.width = w;
-    canvas.height = h;
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(container);
+      } else if (forwardedRef) {
+        forwardedRef.current = container;
+      }
 
-    const rc = rough.canvas(canvas);
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.clearRect(0, 0, w, h);
+      if (!canvas || !container) return;
 
-    const color = variantColors[variant];
+      const w = container.offsetWidth;
+      const h = container.offsetHeight;
+      canvas.width = w;
+      canvas.height = h;
 
-    rc.rectangle(2, 2, w - 4, h - 4, {
-      stroke: color,
-      strokeWidth: 2,
-      roughness: 1.2,
-      bowing: 0.8,
-      fill: variant === 'default' ? 'transparent' : `${color}15`,
-      fillStyle: 'hachure',
-      hachureAngle: -41,
-      hachureGap: 4,
-    });
-  }, [variant]);
+      const rc = rough.canvas(canvas);
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
 
-  return (
-    <div
-      ref={containerRef}
-      className={`relative flex w-full gap-4 p-4 ${className || ''}`.trim()}
-    >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute top-0 left-0 h-full w-full"
-      />
+      const color = variantColors[variant];
+
+      rc.rectangle(2, 2, w - 4, h - 4, {
+        stroke: color,
+        strokeWidth: 2,
+        roughness: 1.2,
+        bowing: 0.8,
+        fill: variant === 'default' ? 'transparent' : `${color}15`,
+        fillStyle: 'hachure',
+        hachureAngle: -41,
+        hachureGap: 4,
+      });
+    }, [variant, forwardedRef]);
+
+    return (
       <div
-        className="relative z-10 flex h-5 w-5 shrink-0 items-start pt-0.5"
-        style={{ color: variantColors[variant] }}
+        ref={containerRef}
+        className={`relative flex w-full gap-4 p-4 ${className || ''}`.trim()}
+        {...props}
       >
-        {variantIcons[variant]}
+        <canvas
+          ref={canvasRef}
+          className="pointer-events-none absolute top-0 left-0 h-full w-full"
+        />
+        <div
+          className="relative z-10 flex h-5 w-5 shrink-0 items-start pt-0.5"
+          style={{ color: variantColors[variant] }}
+        >
+          {variantIcons[variant]}
+        </div>
+        <div className="relative z-10 flex flex-col gap-1">
+          {title && (
+            <h5
+              className="font-virgil text-base leading-none font-bold tracking-tight"
+              style={{ color: variantColors[variant] }}
+            >
+              {title}
+            </h5>
+          )}
+          <div className="font-virgil text-sm opacity-90">{children}</div>
+        </div>
       </div>
-      <div className="relative z-10 flex flex-col gap-1">
-        {title && (
-          <h5
-            className="font-virgil text-base leading-none font-bold tracking-tight"
-            style={{ color: variantColors[variant] }}
-          >
-            {title}
-          </h5>
-        )}
-        <div className="font-virgil text-sm opacity-90">{children}</div>
-      </div>
-    </div>
-  );
-}
+    );
+  },
+);
+Alert.displayName = 'Alert';

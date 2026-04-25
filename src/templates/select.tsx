@@ -103,11 +103,10 @@ export interface SelectTriggerProps extends React.ButtonHTMLAttributes<HTMLButto
   className?: string;
 }
 
-export function SelectTrigger({
-  className,
-  children,
-  ...props
-}: SelectTriggerProps) {
+export const SelectTrigger = React.forwardRef<
+  HTMLButtonElement,
+  SelectTriggerProps
+>(({ className, children, ...props }, forwardedRef) => {
   const { isOpen, setIsOpen, rounded } = useSelect();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -116,6 +115,13 @@ export function SelectTrigger({
   useEffect(() => {
     const canvas = canvasRef.current;
     const button = buttonRef.current;
+
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(button);
+    } else if (forwardedRef) {
+      forwardedRef.current = button;
+    }
+
     if (!canvas || !button) return;
 
     const w = button.offsetWidth;
@@ -145,7 +151,7 @@ export function SelectTrigger({
     } else {
       rc.rectangle(2, 2, w - 4, h - 4, options);
     }
-  }, [isOpen, hovered, rounded]);
+  }, [isOpen, hovered, rounded, forwardedRef]);
 
   return (
     <button
@@ -167,7 +173,8 @@ export function SelectTrigger({
       />
     </button>
   );
-}
+});
+SelectTrigger.displayName = 'SelectTrigger';
 
 export function SelectValue({ placeholder }: { placeholder?: string }) {
   const { selectedValueLabel, setPlaceholder } = useSelect();
@@ -183,12 +190,12 @@ export function SelectValue({ placeholder }: { placeholder?: string }) {
   );
 }
 
-export interface SelectContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
+export interface SelectContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function SelectContent({ children, className }: SelectContentProps) {
+export const SelectContent = React.forwardRef<
+  HTMLDivElement,
+  SelectContentProps
+>(({ children, className, ...props }, forwardedRef) => {
   const { isOpen, setIsOpen, rounded } = useSelect();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -198,6 +205,13 @@ export function SelectContent({ children, className }: SelectContentProps) {
 
     const canvas = canvasRef.current;
     const container = containerRef.current;
+
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(container);
+    } else if (forwardedRef) {
+      forwardedRef.current = container;
+    }
+
     if (!canvas || !container) return;
 
     const w = container.offsetWidth;
@@ -225,7 +239,7 @@ export function SelectContent({ children, className }: SelectContentProps) {
     } else {
       rc.rectangle(2, 2, w - 4, h - 4, options);
     }
-  }, [isOpen, rounded]);
+  }, [isOpen, rounded, forwardedRef]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -247,6 +261,7 @@ export function SelectContent({ children, className }: SelectContentProps) {
     <div
       ref={containerRef}
       className={`absolute top-full left-0 z-50 mt-2 min-w-[8rem] overflow-hidden p-1 ${className || ''}`.trim()}
+      {...props}
     >
       <canvas
         ref={canvasRef}
@@ -255,44 +270,48 @@ export function SelectContent({ children, className }: SelectContentProps) {
       <div className="relative z-10 flex flex-col gap-1">{children}</div>
     </div>
   );
-}
+});
+SelectContent.displayName = 'SelectContent';
 
-export interface SelectItemProps {
+export interface SelectItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
-  children: React.ReactNode;
-  className?: string;
 }
 
-export function SelectItem({ value, children, className }: SelectItemProps) {
-  const {
-    value: selectedValue,
-    setValue,
-    setIsOpen,
-    setSelectedValueLabel,
-  } = useSelect();
-  const isSelected = selectedValue === value;
+export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
+  ({ value, children, className, ...props }, ref) => {
+    const {
+      value: selectedValue,
+      setValue,
+      setIsOpen,
+      setSelectedValueLabel,
+    } = useSelect();
+    const isSelected = selectedValue === value;
 
-  useEffect(() => {
-    if (isSelected) {
-      setSelectedValueLabel(typeof children === 'string' ? children : value);
-    }
-  }, [isSelected, children, value, setSelectedValueLabel]);
+    useEffect(() => {
+      if (isSelected) {
+        setSelectedValueLabel(typeof children === 'string' ? children : value);
+      }
+    }, [isSelected, children, value, setSelectedValueLabel]);
 
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        setValue(value);
-        setIsOpen(false);
-      }}
-      className={`font-virgil relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors duration-200 outline-none select-none hover:bg-black/5 ${
-        isSelected ? 'bg-black/5 font-bold' : ''
-      } ${className || ''}`.trim()}
-    >
-      {children}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type="button"
+        onClick={() => {
+          setValue(value);
+          setIsOpen(false);
+        }}
+        className={`font-virgil relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors duration-200 outline-none select-none hover:bg-black/5 ${
+          isSelected ? 'bg-black/5 font-bold' : ''
+        } ${className || ''}`.trim()}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  },
+);
+SelectItem.displayName = 'SelectItem';
 
 export function SelectGroup({ children }: { children: React.ReactNode }) {
   return <div className="p-1">{children}</div>;

@@ -63,123 +63,135 @@ interface PopoverTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   children: React.ReactNode;
 }
 
-export function PopoverTrigger({
-  children,
-  className = '',
-  ...props
-}: PopoverTriggerProps) {
+export const PopoverTrigger = React.forwardRef<
+  HTMLButtonElement,
+  PopoverTriggerProps
+>(({ children, className = '', ...props }, ref) => {
   const { open, setOpen } = usePopover();
 
   return (
     <button
       type="button"
       onClick={() => setOpen(!open)}
+      ref={ref}
       className={`cursor-pointer border-none bg-transparent p-0 ${className}`.trim()}
       {...props}
     >
       {children}
     </button>
   );
-}
+});
+PopoverTrigger.displayName = 'PopoverTrigger';
 
 // ─── PopoverContent ──────────────────────────────────────────────────────────
 
-interface PopoverContentProps {
-  children: React.ReactNode;
-  className?: string;
+interface PopoverContentProps extends React.HTMLAttributes<HTMLDivElement> {
   align?: 'start' | 'center' | 'end';
   sideOffset?: number;
 }
 
-export function PopoverContent({
-  children,
-  className = '',
-  align = 'center',
-  sideOffset = 4,
-}: PopoverContentProps) {
-  const { open, setOpen } = usePopover();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+export const PopoverContent = React.forwardRef<
+  HTMLDivElement,
+  PopoverContentProps
+>(
+  (
+    { children, className = '', align = 'center', sideOffset = 4, ...props },
+    forwardedRef,
+  ) => {
+    const { open, setOpen } = usePopover();
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!open) return;
+    useEffect(() => {
+      if (!open) return;
 
-    const timer = setTimeout(() => {
-      const canvas = canvasRef.current;
-      const content = contentRef.current;
-      if (!canvas || !content) return;
+      const timer = setTimeout(() => {
+        const canvas = canvasRef.current;
+        const content = contentRef.current;
 
-      const w = content.offsetWidth;
-      const h = content.offsetHeight;
-      canvas.width = w;
-      canvas.height = h;
+        if (typeof forwardedRef === 'function') {
+          forwardedRef(content);
+        } else if (forwardedRef) {
+          forwardedRef.current = content;
+        }
 
-      const rc = rough.canvas(canvas);
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      ctx.clearRect(0, 0, w, h);
+        if (!canvas || !content) return;
 
-      rc.rectangle(2, 2, w - 4, h - 4, {
-        roughness: 1.2,
-        bowing: 0.8,
-        stroke: '#333333',
-        strokeWidth: 1.5,
-        fill: 'white',
-        fillStyle: 'solid',
-      });
-    }, 10);
+        const w = content.offsetWidth;
+        const h = content.offsetHeight;
+        canvas.width = w;
+        canvas.height = h;
 
-    return () => clearTimeout(timer);
-  }, [open]);
+        const rc = rough.canvas(canvas);
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        ctx.clearRect(0, 0, w, h);
 
-  // Close on click outside
-  useEffect(() => {
-    if (!open) return;
+        rc.rectangle(2, 2, w - 4, h - 4, {
+          roughness: 1.2,
+          bowing: 0.8,
+          stroke: '#333333',
+          strokeWidth: 1.5,
+          fill: 'white',
+          fillStyle: 'solid',
+        });
+      }, 10);
 
-    const handleClickOutside = (e: MouseEvent) => {
-      const container = contentRef.current?.closest('.relative.inline-block');
-      if (container && !container.contains(e.target as Node)) {
-        setOpen(false);
-      }
+      return () => clearTimeout(timer);
+    }, [open, forwardedRef]);
+
+    // Close on click outside
+    useEffect(() => {
+      if (!open) return;
+
+      const handleClickOutside = (e: MouseEvent) => {
+        const container = contentRef.current?.closest('.relative.inline-block');
+        if (container && !container.contains(e.target as Node)) {
+          setOpen(false);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
+    }, [open, setOpen]);
+
+    // Close on Escape
+    useEffect(() => {
+      if (!open) return;
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setOpen(false);
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [open, setOpen]);
+
+    if (!open) return null;
+
+    const alignClasses = {
+      start: 'left-0',
+      center: 'left-1/2 -translate-x-1/2',
+      end: 'right-0',
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [open, setOpen]);
-
-  // Close on Escape
-  useEffect(() => {
-    if (!open) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, setOpen]);
-
-  if (!open) return null;
-
-  const alignClasses = {
-    start: 'left-0',
-    center: 'left-1/2 -translate-x-1/2',
-    end: 'right-0',
-  };
-
-  return (
-    <div
-      ref={contentRef}
-      className={`animate-in fade-in-0 zoom-in-95 absolute top-full z-50 w-72 p-4 ${alignClasses[align]} ${className}`.trim()}
-      style={{ marginTop: sideOffset }}
-    >
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute top-0 left-0 h-full w-full"
-      />
-      <div className="font-virgil relative z-10 text-sm tracking-[0.01em] text-[#333333]">
-        {children}
+    return (
+      <div
+        ref={contentRef}
+        className={`animate-in fade-in-0 zoom-in-95 absolute top-full z-50 w-72 p-4 ${alignClasses[align]} ${className}`.trim()}
+        style={{ marginTop: sideOffset }}
+        {...props}
+      >
+        <canvas
+          ref={canvasRef}
+          className="pointer-events-none absolute top-0 left-0 h-full w-full"
+        />
+        <div className="font-virgil relative z-10 text-sm tracking-[0.01em] text-[#333333]">
+          {children}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
+PopoverContent.displayName = 'PopoverContent';

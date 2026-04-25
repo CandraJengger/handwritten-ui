@@ -25,54 +25,51 @@ function useAccordion() {
   return context;
 }
 
-export interface AccordionProps {
-  children: React.ReactNode;
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: 'single' | 'multiple';
   defaultValue?: string | string[];
 }
 
-export function Accordion({
-  children,
-  type = 'single',
-  defaultValue,
-}: AccordionProps) {
-  const [openItems, setOpenItems] = useState<string[]>(
-    Array.isArray(defaultValue)
-      ? defaultValue
-      : defaultValue
-        ? [defaultValue]
-        : [],
-  );
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
+  ({ children, type = 'single', defaultValue, ...props }, ref) => {
+    const [openItems, setOpenItems] = useState<string[]>(
+      Array.isArray(defaultValue)
+        ? defaultValue
+        : defaultValue
+          ? [defaultValue]
+          : [],
+    );
 
-  const toggleItem = (value: string) => {
-    setOpenItems((prev) => {
-      if (type === 'single') {
-        return prev.includes(value) ? [] : [value];
-      }
-      return prev.includes(value)
-        ? prev.filter((i) => i !== value)
-        : [...prev, value];
-    });
-  };
+    const toggleItem = (value: string) => {
+      setOpenItems((prev) => {
+        if (type === 'single') {
+          return prev.includes(value) ? [] : [value];
+        }
+        return prev.includes(value)
+          ? prev.filter((i) => i !== value)
+          : [...prev, value];
+      });
+    };
 
-  return (
-    <AccordionContext.Provider value={{ openItems, toggleItem, type }}>
-      <div className="flex flex-col gap-2">{children}</div>
-    </AccordionContext.Provider>
-  );
-}
+    return (
+      <AccordionContext.Provider value={{ openItems, toggleItem, type }}>
+        <div ref={ref} className="flex flex-col gap-2" {...props}>
+          {children}
+        </div>
+      </AccordionContext.Provider>
+    );
+  },
+);
+Accordion.displayName = 'Accordion';
 
-export interface AccordionItemProps {
+export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
-  children: React.ReactNode;
-  className?: string;
 }
 
-export function AccordionItem({
-  value,
-  children,
-  className,
-}: AccordionItemProps) {
+export const AccordionItem = React.forwardRef<
+  HTMLDivElement,
+  AccordionItemProps
+>(({ value, children, className, ...props }, forwardedRef) => {
   const { openItems } = useAccordion();
   const isOpen = openItems.includes(value);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -81,6 +78,13 @@ export function AccordionItem({
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
+
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(container);
+    } else if (forwardedRef) {
+      forwardedRef.current = container;
+    }
+
     if (!canvas || !container) return;
 
     const w = container.offsetWidth;
@@ -99,12 +103,13 @@ export function AccordionItem({
       stroke: '#333333',
       strokeWidth: 1.5,
     });
-  }, [isOpen]);
+  }, [isOpen, forwardedRef]);
 
   return (
     <div
       ref={containerRef}
       className={`relative p-1 transition-all duration-300 ${className || ''}`.trim()}
+      {...props}
     >
       <canvas
         ref={canvasRef}
@@ -113,15 +118,13 @@ export function AccordionItem({
       <div className="relative z-10">{children}</div>
     </div>
   );
-}
+});
+AccordionItem.displayName = 'AccordionItem';
 
-export function AccordionTrigger({
-  value,
-  children,
-}: {
-  value: string;
-  children: React.ReactNode;
-}) {
+export const AccordionTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { value: string }
+>(({ value, children, ...props }, ref) => {
   const { openItems, toggleItem } = useAccordion();
   const isOpen = openItems.includes(value);
 
@@ -129,7 +132,9 @@ export function AccordionTrigger({
     <button
       type="button"
       onClick={() => toggleItem(value)}
+      ref={ref}
       className="font-virgil flex w-full items-center justify-between px-4 py-3 text-left font-bold transition-all"
+      {...props}
     >
       {children}
       <ChevronDown
@@ -137,23 +142,26 @@ export function AccordionTrigger({
       />
     </button>
   );
-}
+});
+AccordionTrigger.displayName = 'AccordionTrigger';
 
-export function AccordionContent({
-  value,
-  children,
-}: {
-  value: string;
-  children: React.ReactNode;
-}) {
+export const AccordionContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { value: string }
+>(({ value, children, ...props }, ref) => {
   const { openItems } = useAccordion();
   const isOpen = openItems.includes(value);
 
   if (!isOpen) return null;
 
   return (
-    <div className="font-virgil overflow-hidden px-4 pt-0 pb-4 text-sm transition-all duration-300">
+    <div
+      ref={ref}
+      className="font-virgil overflow-hidden px-4 pt-0 pb-4 text-sm transition-all duration-300"
+      {...props}
+    >
       {children}
     </div>
   );
-}
+});
+AccordionContent.displayName = 'AccordionContent';
