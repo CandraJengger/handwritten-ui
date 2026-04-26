@@ -144,7 +144,7 @@ export const FloatButton = React.forwardRef<
     return (
       <button
         ref={ref}
-        className={`group relative flex cursor-pointer items-center justify-center border-none bg-transparent p-0 shadow-lg transition-all duration-200 outline-none active:shadow-md ${className}`.trim()}
+        className={`group relative flex cursor-pointer items-center justify-center border-none bg-transparent p-0 transition-all duration-200 outline-none ${className}`.trim()}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         {...props}
