@@ -4,12 +4,7 @@ import chalk from 'chalk';
 import prompts from 'prompts';
 
 export default async function add(component: string) {
-  const templatePath = path.join(
-    __dirname,
-    '..',
-    'templates',
-    `${component}.tsx`,
-  );
+  const templatePath = path.join(__dirname, 'templates', `${component}.tsx`);
 
   if (!fs.existsSync(templatePath)) {
     console.log(chalk.red(`Component "${component}" not found`));
