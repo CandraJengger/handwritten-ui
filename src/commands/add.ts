@@ -10,6 +10,7 @@ const componentDependencies: Record<string, string[]> = {
   'date-range-picker': ['react-datepicker', '@types/react-datepicker'],
   'month-picker': ['react-datepicker', '@types/react-datepicker'],
   'time-picker': ['react-datepicker', '@types/react-datepicker'],
+  typography: [],
 };
 
 function detectPackageManager(): 'pnpm' | 'yarn' | 'npm' {
