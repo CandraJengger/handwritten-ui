@@ -9,6 +9,7 @@ const componentDependencies: Record<string, string[]> = {
   datepicker: ['react-datepicker', '@types/react-datepicker'],
   'date-range-picker': ['react-datepicker', '@types/react-datepicker'],
   'month-picker': ['react-datepicker', '@types/react-datepicker'],
+  'time-picker': ['react-datepicker', '@types/react-datepicker'],
 };
 
 function detectPackageManager(): 'pnpm' | 'yarn' | 'npm' {
