@@ -7,6 +7,7 @@ import { execSync } from 'child_process';
 // Map of component names to their required npm packages
 const componentDependencies: Record<string, string[]> = {
   datepicker: ['react-datepicker', '@types/react-datepicker'],
+  'date-range-picker': ['react-datepicker', '@types/react-datepicker'],
 };
 
 function detectPackageManager(): 'pnpm' | 'yarn' | 'npm' {
