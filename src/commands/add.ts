@@ -12,6 +12,7 @@ const componentDependencies: Record<string, string[]> = {
   'time-picker': ['react-datepicker', '@types/react-datepicker'],
   toaster: ['sonner'],
   loader: [],
+  'context-menu': [],
 };
 
 function detectPackageManager(): 'pnpm' | 'yarn' | 'npm' {
