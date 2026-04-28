@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
   href?: string;
   variant?: 'filled' | 'outline';
   size?: 'sm' | 'md' | 'lg';
@@ -54,7 +53,7 @@ export const Button = React.forwardRef<
 >(
   (
     {
-      label,
+      children,
       href,
       onClick,
       variant = 'filled',
@@ -150,9 +149,9 @@ export const Button = React.forwardRef<
           />
         )}
         <span
-          className={`font-virgil relative z-[1] ${fontSizeClasses[size]} ${textColorClass} tracking-[0.02em] whitespace-nowrap transition-colors duration-200`}
+          className={`font-virgil relative z-[1] flex items-center justify-center gap-2 ${fontSizeClasses[size]} ${textColorClass} tracking-[0.02em] whitespace-nowrap transition-colors duration-200`}
         >
-          {label}
+          {children}
         </span>
       </div>
     );
