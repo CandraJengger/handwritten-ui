@@ -1,0 +1,57 @@
+---
+title: Installation
+description: How to install and set up Handwritten UI in your project.
+---
+
+Handwritten UI works like **shadcn/ui**. You use a CLI to add components to your project, giving you full control over the source code.
+
+## Quick Start
+
+### 1. Initialize your project
+
+Run the `init` command to set up the necessary configuration and fonts:
+
+```bash
+npx handwritten-ui@latest init
+```
+
+This will:
+- Add the `Virgil` font to your `public/` folder.
+- Configure `tailwind.config.js` with the Virgil font family.
+- Create a `components/ui` folder for your templates.
+
+### 2. Add a component
+
+Once initialized, you can add any component from the library:
+
+```bash
+npx handwritten-ui@latest add button
+```
+
+## Requirements
+
+- **React 19+**
+- **Tailwind CSS v4** (recommended) or v3
+- **RoughJS** (installed automatically by the CLI)
+
+## Manual Setup
+
+If you prefer to set things up manually, you'll need the Virgil font and the following Tailwind configuration:
+
+```css
+@theme {
+  --font-virgil: 'Virgil', sans-serif;
+}
+```
+
+Make sure the font is loaded in your CSS:
+
+```css
+@font-face {
+  font-family: 'Virgil';
+  src: url('/fonts/virgil.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+```

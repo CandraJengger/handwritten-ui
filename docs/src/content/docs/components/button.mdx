@@ -1,0 +1,44 @@
+---
+title: Button
+description: A hand-drawn button component with RoughJS borders.
+---
+
+import { ButtonDemo, ButtonVariants, ButtonSizes } from '../../components/examples/ButtonDemo';
+import Preview from '../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ButtonDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add button
+```
+
+## Variants
+
+### Styles
+
+<Preview>
+  <ButtonVariants client:load />
+</Preview>
+
+### Sizes
+
+<Preview>
+  <ButtonSizes client:load />
+</Preview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'filled' \| 'outline'` | `'filled'` | The visual style of the button. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the button. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | Border radius level. |
+| `border` | `'normal' \| 'rough' \| 'hachure'` | `'rough'` | The type of border drawing. |
+| `fullWidth` | `boolean` | `false` | Whether the button should take full width. |
+| `href` | `string` | — | If provided, renders as an `<a>` tag. |

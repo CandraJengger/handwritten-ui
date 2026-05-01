@@ -1,0 +1,46 @@
+---
+title: Theming
+description: Customizing the look and feel of your handwritten components.
+---
+
+Handwritten UI components are highly customizable. Since they use **RoughJS** under the hood, you can control the "sketchiness" of every element.
+
+## Global Styles
+
+Most components follow your project's Tailwind configuration. However, the handwritten borders use a specific color palette defined in the templates (usually `#333333` for that "ink" look).
+
+## RoughJS Options
+
+You can adjust these values in your component templates to change the global feel:
+
+- **Roughness**: How "wobbly" the lines are. Higher values mean more sketchiness.
+- **Bowing**: How much the lines curve inward or outward.
+- **StrokeWidth**: The thickness of the "pen" used to draw the borders.
+
+Example from `button.tsx`:
+
+```tsx
+const baseOptions = {
+  roughness: 1.2,
+  bowing: 0.5,
+  stroke: '#333333',
+  strokeWidth: 2,
+};
+```
+
+## Border Variants
+
+Many components support a `border` prop to switch between styles:
+
+| Border | Description |
+|--------|-------------|
+| `rough` | The default, hand-drawn look using RoughJS. |
+| `normal` | A standard CSS border for a cleaner, semi-sketchy mix. |
+| `hachure` | Uses a sketchy fill pattern (available on some components). |
+
+## Colors
+
+The library is designed to look best with a monochrome or high-contrast palette. We recommend using:
+- **Foreground**: `#333333` (Ink)
+- **Background**: `#ffffff` (Paper)
+- **Accent**: Hand-drawn highlights or sketchy fills.

@@ -1,0 +1,37 @@
+---
+title: Input
+description: A sketchy text input field with labels and error states.
+---
+
+import { InputDemo, InputVariants } from '../../components/examples/InputDemo';
+import Preview from '../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <InputDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add input
+```
+
+## Variants
+
+<Preview>
+  <InputVariants client:load />
+</Preview>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Optional label text. |
+| `error` | `string` | — | Optional error message. |
+| `variant` | `'filled' \| 'outline'` | `'outline'` | Visual style variant. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | Border radius level. |
+| `border` | `'normal' \| 'rough'` | `'rough'` | Border drawing style. |
+| `fullWidth` | `boolean` | `true` | Whether input takes full width. |

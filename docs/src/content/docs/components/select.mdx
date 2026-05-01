@@ -1,0 +1,50 @@
+---
+title: Select
+description: A sketchy dropdown menu for selecting values.
+---
+
+import { SelectDemo } from '../../components/examples/SelectDemo';
+import Preview from '../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SelectDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add select
+```
+
+## Usage
+
+```tsx
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="Select fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Props
+
+### Select
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultValue` | `string` | — | Default selected value. |
+| `onValueChange` | `(value: string) => void` | — | Event handler for selection changes. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | Border radius level. |

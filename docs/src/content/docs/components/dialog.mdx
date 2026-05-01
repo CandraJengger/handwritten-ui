@@ -1,0 +1,57 @@
+---
+title: Dialog
+description: A sketchy modal window for interactive content.
+---
+
+import { DialogDemo } from '../../components/examples/DialogDemo';
+import Preview from '../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <DialogDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add dialog
+```
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+
+<Dialog>
+  <DialogTrigger>Open Dialog</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button>Confirm</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+## Props
+
+### Dialog
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | — | Controlled open state. |
+| `onOpenChange` | `(open: boolean) => void` | — | Event handler for open state changes. |
+| `defaultOpen` | `boolean` | `false` | Default open state. |

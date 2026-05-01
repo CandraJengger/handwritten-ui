@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Virgil';
+  src: url('/virgil.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import 'tailwindcss';
+
+@theme {
+  --font-virgil: 'Virgil', sans-serif;
+}
+
+/* Starlight Overrides */
+:root {
+  --sl-font-body: 'Virgil', sans-serif;
+  --sl-font-heading: 'Virgil', sans-serif;
+  --sl-color-accent-low: #333333;
+  --sl-color-accent: #333333;
+  --sl-color-accent-high: #000000;
+}
+
+/* Custom Preview Styles */
+.component-preview {
+  padding: 2rem;
+  background-color: #fcfcfc;
+  border: 2px solid #333333;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  position: relative;
+}
+
+/* Rough borders for the whole site feel */
+.sl-markdown-content :not(pre) > code {
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #f5f5f5;
+}
+
+.sidebar-content {
+  font-family: 'Virgil', sans-serif;
+}
+
+/* Simple animation for dialogs if needed in previews */
+@keyframes dialog-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-dialog-in {
+  animation: dialog-zoom-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
