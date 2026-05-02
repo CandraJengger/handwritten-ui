@@ -33,6 +33,20 @@ function detectPackageManager(): 'pnpm' | 'yarn' | 'npm' {
   return 'npm';
 }
 
+function getMissingDependencies(packages: string[]): string[] {
+  try {
+    const pkgPath = path.resolve(process.cwd(), 'package.json');
+    if (fs.existsSync(pkgPath)) {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+      const allDeps = { ...pkg.dependencies, ...pkg.devDependencies };
+      return packages.filter((p) => !allDeps[p]);
+    }
+  } catch {
+    // ignore
+  }
+  return packages;
+}
+
 async function installDependencies(packages: string[]): Promise<boolean> {
   const pm = detectPackageManager();
   const installCmd =
@@ -64,28 +78,32 @@ export default async function add(component: string) {
   // ── Dependency check ────────────────────────────────────────────────────────
   const deps = componentDependencies[component];
   if (deps && deps.length > 0) {
-    console.log(
-      chalk.yellow(
-        `\nThe "${component}" component requires additional packages:\n`,
-      ),
-    );
-    deps.forEach((pkg) => console.log(chalk.cyan(`  • ${pkg}`)));
-    console.log('');
+    const missingDeps = getMissingDependencies(deps);
 
-    const { install } = await prompts({
-      type: 'confirm',
-      name: 'install',
-      message: 'Install these dependencies now?',
-      initial: true,
-    });
+    if (missingDeps.length > 0) {
+      console.log(
+        chalk.yellow(
+          `\nThe "${component}" component requires additional packages:\n`,
+        ),
+      );
+      missingDeps.forEach((pkg) => console.log(chalk.cyan(`  • ${pkg}`)));
+      console.log('');
 
-    if (!install) {
-      console.log(chalk.yellow('Aborted.'));
-      return;
+      const { install } = await prompts({
+        type: 'confirm',
+        name: 'install',
+        message: 'Install these missing dependencies now?',
+        initial: true,
+      });
+
+      if (!install) {
+        console.log(chalk.yellow('Aborted.'));
+        return;
+      }
+
+      const success = await installDependencies(missingDeps);
+      if (!success) return;
     }
-
-    const success = await installDependencies(deps);
-    if (!success) return;
   }
 
   // ── Overwrite check ─────────────────────────────────────────────────────────
