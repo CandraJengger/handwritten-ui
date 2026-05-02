@@ -11,6 +11,7 @@ const componentDependencies: Record<string, string[]> = {
   'month-picker': ['react-datepicker', '@types/react-datepicker'],
   'time-picker': ['react-datepicker', '@types/react-datepicker'],
   toaster: ['sonner'],
+  dialog: ['@radix-ui/react-slot'],
   loader: [],
   'context-menu': [],
 };

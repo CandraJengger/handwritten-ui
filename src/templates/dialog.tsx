@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import rough from 'roughjs';
 import { X } from 'lucide-react';
+import { Slot } from '@radix-ui/react-slot';
 
 // ─── Context ─────────────────────────────────────────────────────────────────
 
@@ -59,24 +60,34 @@ export function Dialog({
 
 // ─── DialogTrigger ───────────────────────────────────────────────────────────
 
-interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean;
+}
 
 export const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
   DialogTriggerProps
->(({ children, className = '', ...props }, ref) => {
+>(({ children, className = '', asChild = false, ...props }, ref) => {
   const { setOpen } = useDialog();
+  const Comp = asChild ? Slot : 'button';
 
   return (
-    <button
-      type="button"
-      onClick={() => setOpen(true)}
+    <Comp
+      type={asChild ? undefined : 'button'}
+      onClick={(e) => {
+        setOpen(true);
+        props.onClick?.(e);
+      }}
       ref={ref}
-      className={`cursor-pointer border-none bg-transparent p-0 ${className}`.trim()}
+      className={
+        asChild
+          ? className
+          : `cursor-pointer border-none bg-transparent p-0 ${className}`.trim()
+      }
       {...props}
     >
       {children}
-    </button>
+    </Comp>
   );
 });
 DialogTrigger.displayName = 'DialogTrigger';
