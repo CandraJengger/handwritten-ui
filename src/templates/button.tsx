@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  href?: string;
+  asChild?: boolean;
   variant?: 'filled' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   rounded?: 'none' | 'sm' | 'md' | 'lg';
@@ -47,14 +48,11 @@ function getRoundedRectPath(
   return `M ${x + radius} ${y} h ${w - 2 * radius} a ${radius} ${radius} 0 0 1 ${radius} ${radius} v ${h - 2 * radius} a ${radius} ${radius} 0 0 1 -${radius} ${radius} h -${w - 2 * radius} a ${radius} ${radius} 0 0 1 -${radius} -${radius} v -${h - 2 * radius} a ${radius} ${radius} 0 0 1 ${radius} -${radius} z`;
 }
 
-export const Button = React.forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps
->(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
-      href,
+      asChild = false,
       onClick,
       variant = 'filled',
       size = 'md',
@@ -156,29 +154,18 @@ export const Button = React.forwardRef<
       </div>
     );
 
-    if (href) {
-      return (
-        <a
-          href={href}
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          className={`no-underline ${fullWidth ? 'block' : 'inline-block'}`}
-          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {content}
-        </a>
-      );
-    }
+    const Comp = asChild ? Slot : 'button';
 
     return (
-      <button
+      <Comp
         onClick={onClick}
-        ref={ref as React.Ref<HTMLButtonElement>}
+        ref={ref}
         className={`cursor-pointer border-none bg-transparent p-0 ${fullWidth ? 'block w-full' : 'inline-block w-auto'}`}
-        type={type}
+        type={asChild ? undefined : type}
         {...props}
       >
         {content}
-      </button>
+      </Comp>
     );
   },
 );

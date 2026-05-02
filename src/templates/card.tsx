@@ -1,14 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 // ─── Card (root) ─────────────────────────────────────────────────────────────
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
   border?: 'rough' | 'normal';
 }
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ children, border = 'rough', className = '', ...props }, forwardedRef) => {
+  (
+    { children, asChild = false, border = 'rough', className = '', ...props },
+    forwardedRef,
+  ) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -44,8 +49,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       });
     }, [border, forwardedRef]);
 
+    const Comp = asChild ? Slot : 'div';
+
     return (
-      <div
+      <Comp
         ref={containerRef}
         className={`relative flex flex-col ${
           border === 'normal' ? 'rounded-md border-2 border-[#333333]' : ''
@@ -59,7 +66,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
           />
         )}
         <div className="relative z-10 flex flex-col">{children}</div>
-      </div>
+      </Comp>
     );
   },
 );
@@ -67,18 +74,21 @@ Card.displayName = 'Card';
 
 // ─── CardHeader ──────────────────────────────────────────────────────────────
 
-interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+}
 
 export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ children, className = '', ...props }, ref) => {
+  ({ children, asChild = false, className = '', ...props }, ref) => {
+    const Comp = asChild ? Slot : 'div';
     return (
-      <div
+      <Comp
         ref={ref}
         className={`flex flex-col gap-1.5 p-6 ${className}`.trim()}
         {...props}
       >
         {children}
-      </div>
+      </Comp>
     );
   },
 );
@@ -86,18 +96,21 @@ CardHeader.displayName = 'CardHeader';
 
 // ─── CardTitle ───────────────────────────────────────────────────────────────
 
-interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  asChild?: boolean;
+}
 
 export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
-  ({ children, className = '', ...props }, ref) => {
+  ({ children, asChild = false, className = '', ...props }, ref) => {
+    const Comp = asChild ? Slot : 'h3';
     return (
-      <h3
+      <Comp
         ref={ref}
         className={`font-virgil text-2xl leading-none font-bold tracking-tight text-[#333333] ${className}`.trim()}
         {...props}
       >
         {children}
-      </h3>
+      </Comp>
     );
   },
 );
@@ -105,34 +118,40 @@ CardTitle.displayName = 'CardTitle';
 
 // ─── CardDescription ────────────────────────────────────────────────────────
 
-interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  asChild?: boolean;
+}
 
 export const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   CardDescriptionProps
->(({ children, className = '', ...props }, ref) => {
+>(({ children, asChild = false, className = '', ...props }, ref) => {
+  const Comp = asChild ? Slot : 'p';
   return (
-    <p
+    <Comp
       ref={ref}
       className={`font-virgil text-sm tracking-[0.01em] text-[#888888] ${className}`.trim()}
       {...props}
     >
       {children}
-    </p>
+    </Comp>
   );
 });
 CardDescription.displayName = 'CardDescription';
 
 // ─── CardContent ─────────────────────────────────────────────────────────────
 
-interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+}
 
 export const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
-  ({ children, className = '', ...props }, ref) => {
+  ({ children, asChild = false, className = '', ...props }, ref) => {
+    const Comp = asChild ? Slot : 'div';
     return (
-      <div ref={ref} className={`p-6 pt-0 ${className}`.trim()} {...props}>
+      <Comp ref={ref} className={`p-6 pt-0 ${className}`.trim()} {...props}>
         {children}
-      </div>
+      </Comp>
     );
   },
 );
@@ -140,18 +159,21 @@ CardContent.displayName = 'CardContent';
 
 // ─── CardFooter ──────────────────────────────────────────────────────────────
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+}
 
 export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ children, className = '', ...props }, ref) => {
+  ({ children, asChild = false, className = '', ...props }, ref) => {
+    const Comp = asChild ? Slot : 'div';
     return (
-      <div
+      <Comp
         ref={ref}
         className={`flex items-center p-6 pt-0 ${className}`.trim()}
         {...props}
       >
         {children}
-      </div>
+      </Comp>
     );
   },
 );

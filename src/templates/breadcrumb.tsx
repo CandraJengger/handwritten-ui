@@ -1,21 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 // ─── Breadcrumb (root nav) ───────────────────────────────────────────────────
 
-interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {}
+interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
+  asChild?: boolean;
+}
 
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ children, className = '', ...props }, ref) => {
+  ({ children, asChild = false, className = '', ...props }, ref) => {
+    const Comp = asChild ? Slot : 'nav';
     return (
-      <nav
+      <Comp
         ref={ref}
         aria-label="breadcrumb"
         className={`font-virgil ${className}`.trim()}
         {...props}
       >
         {children}
-      </nav>
+      </Comp>
     );
   },
 );
@@ -43,20 +47,23 @@ BreadcrumbList.displayName = 'BreadcrumbList';
 
 // ─── BreadcrumbItem ──────────────────────────────────────────────────────────
 
-interface BreadcrumbItemProps extends React.LiHTMLAttributes<HTMLLIElement> {}
+interface BreadcrumbItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  asChild?: boolean;
+}
 
 export const BreadcrumbItem = React.forwardRef<
   HTMLLIElement,
   BreadcrumbItemProps
->(({ children, className = '', ...props }, ref) => {
+>(({ children, asChild = false, className = '', ...props }, ref) => {
+  const Comp = asChild ? Slot : 'li';
   return (
-    <li
+    <Comp
       ref={ref}
       className={`inline-flex items-center gap-1.5 ${className}`.trim()}
       {...props}
     >
       {children}
-    </li>
+    </Comp>
   );
 });
 BreadcrumbItem.displayName = 'BreadcrumbItem';
@@ -64,25 +71,32 @@ BreadcrumbItem.displayName = 'BreadcrumbItem';
 // ─── BreadcrumbLink ──────────────────────────────────────────────────────────
 
 interface BreadcrumbLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  asChild?: boolean;
   onClick?: () => void;
 }
 
 export const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
   BreadcrumbLinkProps
->(({ children, href, className = '', onClick, ...props }, ref) => {
-  return (
-    <a
-      ref={ref}
-      href={href}
-      onClick={onClick}
-      className={`font-virgil cursor-pointer tracking-[0.02em] text-[#666666] underline decoration-[#999999] decoration-wavy underline-offset-4 transition-colors duration-200 hover:text-[#333333] hover:decoration-[#333333] ${className}`.trim()}
-      {...props}
-    >
-      {children}
-    </a>
-  );
-});
+>(
+  (
+    { children, asChild = false, href, className = '', onClick, ...props },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : 'a';
+    return (
+      <Comp
+        ref={ref}
+        href={href}
+        onClick={onClick}
+        className={`font-virgil cursor-pointer tracking-[0.02em] text-[#666666] underline decoration-[#999999] decoration-wavy underline-offset-4 transition-colors duration-200 hover:text-[#333333] hover:decoration-[#333333] ${className}`.trim()}
+        {...props}
+      >
+        {children}
+      </Comp>
+    );
+  },
+);
 BreadcrumbLink.displayName = 'BreadcrumbLink';
 
 // ─── BreadcrumbPage (current / non-clickable) ────────────────────────────────

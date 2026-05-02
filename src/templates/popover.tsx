@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 // ─── Context ─────────────────────────────────────────────────────────────────
 
@@ -28,6 +29,7 @@ export function usePopover() {
 
 interface PopoverProps {
   children: React.ReactNode;
+  asChild?: boolean;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -35,6 +37,7 @@ interface PopoverProps {
 
 export function Popover({
   children,
+  asChild = false,
   open: controlledOpen,
   defaultOpen = false,
   onOpenChange,
@@ -50,9 +53,11 @@ export function Popover({
     [controlledOpen, onOpenChange],
   );
 
+  const Comp = asChild ? Slot : 'div';
+
   return (
     <PopoverContext.Provider value={{ open, setOpen }}>
-      <div className="relative inline-block text-left">{children}</div>
+      <Comp className="relative inline-block text-left">{children}</Comp>
     </PopoverContext.Provider>
   );
 }
@@ -60,25 +65,31 @@ export function Popover({
 // ─── PopoverTrigger ──────────────────────────────────────────────────────────
 
 interface PopoverTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean;
   children: React.ReactNode;
 }
 
 export const PopoverTrigger = React.forwardRef<
   HTMLButtonElement,
   PopoverTriggerProps
->(({ children, className = '', ...props }, ref) => {
+>(({ children, className = '', asChild = false, ...props }, ref) => {
   const { open, setOpen } = usePopover();
+  const Comp = asChild ? Slot : 'button';
 
   return (
-    <button
-      type="button"
+    <Comp
+      type={asChild ? undefined : 'button'}
       onClick={() => setOpen(!open)}
       ref={ref}
-      className={`cursor-pointer border-none bg-transparent p-0 ${className}`.trim()}
+      className={
+        asChild
+          ? className
+          : `cursor-pointer border-none bg-transparent p-0 ${className}`.trim()
+      }
       {...props}
     >
       {children}
-    </button>
+    </Comp>
   );
 });
 PopoverTrigger.displayName = 'PopoverTrigger';
@@ -86,6 +97,7 @@ PopoverTrigger.displayName = 'PopoverTrigger';
 // ─── PopoverContent ──────────────────────────────────────────────────────────
 
 interface PopoverContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
   align?: 'start' | 'center' | 'end';
   sideOffset?: number;
 }
@@ -176,8 +188,10 @@ export const PopoverContent = React.forwardRef<
       end: 'right-0',
     };
 
+    const Comp = asChild ? Slot : 'div';
+
     return (
-      <div
+      <Comp
         ref={contentRef}
         className={`animate-in fade-in-0 zoom-in-95 absolute top-full z-50 w-72 p-4 ${alignClasses[align]} ${className}`.trim()}
         style={{ marginTop: sideOffset }}
@@ -190,7 +204,7 @@ export const PopoverContent = React.forwardRef<
         <div className="font-virgil relative z-10 text-sm tracking-[0.01em] text-[#333333]">
           {children}
         </div>
-      </div>
+      </Comp>
     );
   },
 );

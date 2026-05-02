@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 type BadgeVariant = 'default' | 'outline' | 'hachure' | 'solid';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
   variant?: BadgeVariant;
   color?: string;
   border?: 'none' | 'rough';
@@ -13,6 +15,7 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
   (
     {
       children,
+      asChild = false,
       variant = 'default',
       color = '#333333',
       border = 'rough',
@@ -80,8 +83,10 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
       return `${base} bg-[${color}]15 border-[${color}]`;
     };
 
+    const Comp = asChild ? Slot : 'div';
+
     return (
-      <div
+      <Comp
         ref={containerRef}
         className={`relative inline-flex items-center px-2.5 py-0.5 ${getNormalStyles()} ${className}`.trim()}
         style={{
@@ -108,7 +113,7 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
         >
           {children}
         </span>
-      </div>
+      </Comp>
     );
   },
 );

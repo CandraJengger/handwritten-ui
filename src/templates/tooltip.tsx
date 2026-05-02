@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import rough from 'roughjs';
+import { Slot } from '@radix-ui/react-slot';
 
 interface TooltipProps extends Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'content'
 > {
+  asChild?: boolean;
   content: React.ReactNode;
   side?: 'top' | 'bottom' | 'left' | 'right';
   delay?: number;
@@ -72,8 +74,10 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       right: 'left-full top-1/2 -translate-y-1/2 ml-2',
     };
 
+    const Comp = asChild ? Slot : 'div';
+
     return (
-      <div
+      <Comp
         ref={ref}
         className="relative inline-flex"
         onMouseEnter={show}
@@ -101,7 +105,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             </div>
           </div>
         )}
-      </div>
+      </Comp>
     );
   },
 );
