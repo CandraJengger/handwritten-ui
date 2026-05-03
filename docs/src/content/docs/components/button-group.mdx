@@ -1,0 +1,55 @@
+---
+title: Button Group
+description: A set of buttons that can be toggled individually or as a single selection.
+---
+
+import { ButtonGroupDemo, ButtonGroupVariants } from '../../../components/examples/ButtonGroupDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ButtonGroupDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add button-group
+```
+
+## Usage
+
+```tsx
+import { ButtonGroup, ButtonGroupItem } from '@/components/ui/button-group';
+
+<ButtonGroup defaultValue={["center"]}>
+  <ButtonGroupItem value="left">Left</ButtonGroupItem>
+  <ButtonGroupItem value="center">Center</ButtonGroupItem>
+  <ButtonGroupItem value="right">Right</ButtonGroupItem>
+</ButtonGroup>
+```
+
+## Variants
+
+<ButtonGroupVariants client:load />
+
+## Props
+
+### ButtonGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | `'single'` | Determines whether one or multiple items can be selected. |
+| `defaultValue` | `string[]` | — | The initial selected values. |
+| `onValueChange` | `(value: string[]) => void` | — | Event handler for when selection changes. |
+| `variant` | `'outline' \| 'filled'` | `'outline'` | The visual style of the buttons. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the buttons. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | The orientation of the group. |
+
+### ButtonGroupItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | (required) | A unique value for the item. |
+| `disabled` | `boolean` | `false` | Whether the item is disabled. |

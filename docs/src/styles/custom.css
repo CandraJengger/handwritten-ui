@@ -43,7 +43,8 @@
   background: #f5f5f5;
 }
 
-.sl-markdown-content .handwritten-ui div {
+.sl-markdown-content .handwritten-ui div,
+.sl-markdown-content .handwritten-ui button {
   margin-top: 0px !important;
 }
 

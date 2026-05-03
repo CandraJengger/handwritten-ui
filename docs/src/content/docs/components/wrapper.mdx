@@ -1,0 +1,48 @@
+---
+title: Wrapper
+description: A flexible container component with hand-drawn borders and backgrounds.
+---
+
+import { WrapperDemo, WrapperVariants } from '../../../components/examples/WrapperDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <WrapperDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add wrapper
+```
+
+## Usage
+
+```tsx
+import { Wrapper } from '@/components/ui/wrapper';
+
+<Wrapper>
+  <h3 className="text-lg font-bold">Hello World</h3>
+  <p>This is a hand-drawn card container.</p>
+</Wrapper>
+```
+
+## Variants
+
+<WrapperVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `padding` | `number \| string` | `24` | Padding inside the wrapper. |
+| `roughness` | `number` | `1.5` | How sketchy the lines look. |
+| `bowing` | `number` | `1` | How much the lines curve. |
+| `stroke` | `string` | `'#333333'` | Border color. |
+| `strokeWidth` | `number` | `1.5` | Border thickness. |
+| `fill` | `string` | `'transparent'` | Background color. |
+| `fillStyle` | `string` | `'solid'` | Background fill pattern (solid, hachure, zigzag, etc). |
+| `animated` | `boolean` | `false` | Whether to enable CSS transitions. |
+| `interactive` | `boolean` | `true` | Whether to enable hover effects. |

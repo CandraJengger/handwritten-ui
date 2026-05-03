@@ -1,0 +1,45 @@
+---
+title: Skeleton
+description: Use to display a placeholder preview of content before the data gets loaded.
+---
+
+import { SkeletonDemo, SkeletonVariants } from '../../../components/examples/SkeletonDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SkeletonDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add skeleton
+```
+
+## Usage
+
+```tsx
+import { Skeleton } from '@/components/ui/skeleton';
+
+<div className="flex items-center space-x-4">
+  <Skeleton shape="circle" width={40} height={40} />
+  <div className="space-y-2">
+    <Skeleton width={250} height={16} />
+    <Skeleton width={200} height={16} />
+  </div>
+</div>
+```
+
+## Variants
+
+<SkeletonVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `width` | `number \| string` | `'100%'` | The width of the skeleton. |
+| `height` | `number \| string` | `20` | The height of the skeleton. |
+| `shape` | `'rectangle' \| 'circle'` | `'rectangle'` | The shape of the skeleton. |

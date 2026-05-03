@@ -216,7 +216,7 @@ export const TabsTrigger = React.forwardRef<
       onClick={() => onValueChange(value)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`font-virgil relative inline-flex items-center justify-center px-3 py-1.5 text-sm font-bold tracking-[0.02em] whitespace-nowrap transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${
+      className={`font-virgil! relative inline-flex items-center justify-center px-3 py-1.5 text-sm font-bold tracking-[0.02em] whitespace-nowrap transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${
         isActive
           ? variant === 'filled'
             ? 'text-white'

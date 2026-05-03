@@ -1,0 +1,49 @@
+---
+title: Separator
+description: Visually or semantically separates content.
+---
+
+import { SeparatorDemo, SeparatorVariants } from '../../../components/examples/SeparatorDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SeparatorDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add separator
+```
+
+## Usage
+
+```tsx
+import { Separator } from '@/components/ui/separator';
+
+<div className="space-y-1">
+  <h4 className="text-sm font-bold">Handwritten UI</h4>
+  <p className="text-sm">A hand-drawn component library.</p>
+</div>
+<Separator className="my-4" />
+<div className="flex h-5 items-center space-x-4">
+  <div>Blog</div>
+  <Separator orientation="vertical" />
+  <div>Docs</div>
+</div>
+```
+
+## Variants
+
+<SeparatorVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | The orientation of the separator. |
+| `decorative` | `boolean` | `true` | Whether the component is purely decorative (aria-hidden). |
+| `thickness` | `number` | `1.5` | The thickness of the line. |
+| `color` | `string` | `'#cccccc'` | The color of the line. |

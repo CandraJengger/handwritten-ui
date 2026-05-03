@@ -133,7 +133,7 @@ export const AccordionTrigger = React.forwardRef<
       type="button"
       onClick={() => toggleItem(value)}
       ref={ref}
-      className="font-virgil flex w-full items-center justify-between px-4 py-3 text-left font-bold transition-all"
+      className="font-virgil! flex w-full items-center justify-between px-4 py-3 text-left font-bold transition-all"
       {...props}
     >
       {children}
