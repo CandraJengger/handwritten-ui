@@ -1,0 +1,47 @@
+---
+title: Rate
+description: A sketchy rating component using hand-drawn stars.
+---
+
+import { RateDemo, RateVariants } from '../../../components/examples/RateDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <RateDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add rate
+```
+
+## Usage
+
+```tsx
+import { Rate } from '@/components/ui/rate';
+
+<Rate
+  count={5}
+  defaultValue={3}
+  onChange={(value) => console.log(value)}
+/>
+```
+
+## Variants
+
+<RateVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `count` | `number` | `5` | The total number of stars. |
+| `value` | `number` | — | The controlled value of the rating. |
+| `defaultValue` | `number` | `0` | The initial value when uncontrolled. |
+| `onChange` | `(value: number) => void` | — | Callback fired when the value changes. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the stars. |
+| `disabled` | `boolean` | `false` | Whether the component is non-interactive. |
+| `readonly` | `boolean` | `false` | If true, the rating can be displayed but not changed. |

@@ -1,0 +1,45 @@
+---
+title: Toggle
+description: A two-state button that can be either on or off.
+---
+
+import { ToggleDemo, ToggleVariants } from '../../../components/examples/ToggleDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ToggleDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add toggle
+```
+
+## Usage
+
+```tsx
+import { Toggle } from '@/components/ui/toggle';
+import { Bold } from 'lucide-react';
+
+<Toggle aria-label="Toggle bold">
+  <Bold className="h-4 w-4" />
+</Toggle>
+```
+
+## Variants
+
+<ToggleVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'outline'` | `'default'` | The visual style. |
+| `size` | `'default' \| 'sm' \| 'lg'` | `'default'` | The size of the toggle. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The type of border drawing. |
+| `pressed` | `boolean` | — | The controlled pressed state. |
+| `defaultPressed` | `boolean` | `false` | The initial pressed state when uncontrolled. |
+| `onPressedChange` | `(pressed: boolean) => void` | — | Callback fired when the state changes. |

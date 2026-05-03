@@ -1,0 +1,44 @@
+---
+title: Switch
+description: A control that allows the user to toggle between checked and not checked.
+---
+
+import { SwitchDemo, SwitchVariants } from '../../../components/examples/SwitchDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SwitchDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add switch
+```
+
+## Usage
+
+```tsx
+import { Switch } from '@/components/ui/switch';
+
+<Switch
+  label="Airplane Mode"
+  checked={enabled}
+  onChange={(checked) => setEnabled(checked)}
+/>
+```
+
+## Variants
+
+<SwitchVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | The controlled checked state of the switch. |
+| `onChange` | `(checked: boolean) => void` | — | Callback fired when the state changes. |
+| `label` | `string` | — | The label text displayed next to the switch. |
+| `disabled` | `boolean` | `false` | Whether the switch is non-interactive. |

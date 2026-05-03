@@ -1,0 +1,48 @@
+---
+title: Slider
+description: An input where the user selects a value from a given range.
+---
+
+import { SliderDemo, SliderVariants } from '../../../components/examples/SliderDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SliderDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add slider
+```
+
+## Usage
+
+```tsx
+import { Slider } from '@/components/ui/slider';
+
+<Slider
+  defaultValue={[50]}
+  max={100}
+  step={1}
+  onValueChange={(value) => console.log(value)}
+/>
+```
+
+## Variants
+
+<SliderVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number[]` | — | The controlled value of the slider. |
+| `defaultValue` | `number[]` | `[0]` | The value of the slider when initially rendered. |
+| `onValueChange` | `(value: number[]) => void` | — | Callback fired when the value changes. |
+| `min` | `number` | `0` | The minimum value of the slider. |
+| `max` | `number` | `100` | The maximum value of the slider. |
+| `step` | `number` | `1` | The granularity of the slider. |
+| `disabled` | `boolean` | `false` | Whether the slider is non-interactive. |

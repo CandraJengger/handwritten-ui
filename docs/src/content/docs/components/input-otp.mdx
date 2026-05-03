@@ -1,0 +1,70 @@
+---
+title: Input OTP
+description: A sketchy one-time password input with customizable slots and separators.
+---
+
+import { InputOTPDemo, InputOTPVariants } from '../../../components/examples/InputOTPDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <InputOTPDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add input-otp
+```
+
+## Usage
+
+```tsx
+import { 
+  InputOTP, 
+  InputOTPGroup, 
+  InputOTPSlot, 
+  InputOTPSeparator 
+} from '@/components/ui/input-otp';
+
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## Variants
+
+<InputOTPVariants client:load />
+
+## Props
+
+### InputOTP
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `maxLength` | `number` (required) | — | The maximum number of characters. |
+| `value` | `string` | — | The controlled value. |
+| `defaultValue` | `string` | `''` | The initial value. |
+| `onChange` | `(value: string) => void` | — | Callback fired when the value changes. |
+| `onComplete` | `(value: string) => void` | — | Callback fired when all slots are filled. |
+| `disabled` | `boolean` | `false` | Whether the input is non-interactive. |
+| `pattern` | `RegExp` | — | Regular expression to validate each character. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the slots. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | Border radius of the slots. |
+
+### InputOTPSlot
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `index` | `number` (required) | — | The index of the slot (0 to maxLength-1). |

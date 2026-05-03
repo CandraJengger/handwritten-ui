@@ -1,0 +1,45 @@
+---
+title: Textarea
+description: A sketchy textarea component with RoughJS borders that supports resizing.
+---
+
+import { TextareaDemo, TextareaVariants } from '../../../components/examples/TextareaDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <TextareaDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add textarea
+```
+
+## Usage
+
+```tsx
+import { Textarea } from '@/components/ui/textarea';
+
+<Textarea
+  label="Message"
+  placeholder="Type your message here..."
+/>
+```
+
+## Variants
+
+<TextareaVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | The label text. |
+| `error` | `string` | — | Error message displayed below the textarea. |
+| `variant` | `'outline' \| 'filled'` | `'outline'` | The visual style. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | Border radius level. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The type of border drawing. |
+| `fullWidth` | `boolean` | `true` | Whether to take the full width of the container. |

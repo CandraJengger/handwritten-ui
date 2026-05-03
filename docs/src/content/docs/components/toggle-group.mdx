@@ -1,0 +1,62 @@
+---
+title: Toggle Group
+description: A set of two-state buttons that can be toggled on or off.
+---
+
+import { ToggleGroupDemo, ToggleGroupVariants } from '../../../components/examples/ToggleGroupDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ToggleGroupDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add toggle-group
+```
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Bold, Italic } from 'lucide-react';
+
+<ToggleGroup type="single">
+  <ToggleGroupItem value="bold">
+    <Bold className="h-4 w-4" />
+  </ToggleGroupItem>
+  <ToggleGroupItem value="italic">
+    <Italic className="h-4 w-4" />
+  </ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Variants
+
+<ToggleGroupVariants client:load />
+
+## Props
+
+### ToggleGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | (required) | Whether one or multiple items can be pressed. |
+| `value` | `string \| string[]` | — | The controlled value of the pressed item(s). |
+| `defaultValue` | `string \| string[]` | — | The initial value when uncontrolled. |
+| `onValueChange` | `(value: any) => void` | — | Callback fired when the selection changes. |
+| `variant` | `'default' \| 'outline'` | `'default'` | The visual style of items in the group. |
+| `size` | `'default' \| 'sm' \| 'lg'` | `'default'` | The size of items in the group. |
+| `disabled` | `boolean` | `false` | Whether the entire group is non-interactive. |
+
+### ToggleGroupItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | (required) | The value associated with this item. |
+| `variant` | `'default' \| 'outline'` | — | Overrides the group's variant for this item. |
+| `size` | `'default' \| 'sm' \| 'lg'` | — | Overrides the group's size for this item. |
+| `disabled` | `boolean` | `false` | Whether this specific item is non-interactive. |

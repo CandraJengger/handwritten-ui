@@ -1,0 +1,46 @@
+---
+title: Checkbox
+description: A hand-drawn checkbox component with sketchy RoughJS borders and checkmark.
+---
+
+import { CheckboxDemo, CheckboxVariants } from '../../../components/examples/CheckboxDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <CheckboxDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add checkbox
+```
+
+## Usage
+
+```tsx
+import { Checkbox } from '@/components/ui/checkbox';
+
+<Checkbox
+  label="Accept terms"
+  description="Agree to our terms and conditions."
+  onCheckedChange={(checked) => console.log(checked)}
+/>
+```
+
+## Variants
+
+<CheckboxVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | — | The controlled checked state of the checkbox. |
+| `defaultChecked` | `boolean` | `false` | The initial checked state when uncontrolled. |
+| `onCheckedChange` | `(checked: boolean) => void` | — | Callback fired when the state changes. |
+| `label` | `string` | — | The label text displayed next to the checkbox. |
+| `description` | `string` | — | Additional helper text displayed below the label. |
+| `disabled` | `boolean` | `false` | Whether the checkbox is non-interactive. |

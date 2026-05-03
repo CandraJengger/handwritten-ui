@@ -1,0 +1,55 @@
+---
+title: Radio Group
+description: A set of checkable buttons—known as radio buttons—where no more than one button can be checked at a time.
+---
+
+import { RadioGroupDemo, RadioGroupVariants } from '../../../components/examples/RadioGroupDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <RadioGroupDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add radio-group
+```
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+
+<RadioGroup defaultValue="option-one">
+  <RadioGroupItem value="option-one" label="Option One" />
+  <RadioGroupItem value="option-two" label="Option Two" />
+</RadioGroup>
+```
+
+## Variants
+
+<RadioGroupVariants client:load />
+
+## Props
+
+### RadioGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | The controlled value of the group. |
+| `defaultValue` | `string` | `''` | The initial value when uncontrolled. |
+| `onValueChange` | `(value: string) => void` | — | Callback fired when the value changes. |
+| `disabled` | `boolean` | `false` | Whether the entire group is non-interactive. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | The layout direction of the items. |
+
+### RadioGroupItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` (required) | — | The value associated with this item. |
+| `label` | `string` | — | The label text. |
+| `description` | `string` | — | Helper text below the label. |
+| `disabled` | `boolean` | `false` | Whether this specific item is non-interactive. |
