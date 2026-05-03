@@ -19,6 +19,7 @@ interface SelectContextType {
   selectedValueLabel?: string;
   setSelectedValueLabel: (label: string) => void;
   rounded: 'none' | 'sm' | 'md' | 'lg';
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const SelectContext = createContext<SelectContextType | undefined>(undefined);
@@ -71,6 +72,7 @@ export function Select({
   const [isOpen, setIsOpen] = useState(false);
   const [placeholder, setPlaceholder] = useState('');
   const [selectedValueLabel, setSelectedValueLabel] = useState('');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const value = controlledValue !== undefined ? controlledValue : internalValue;
   const setValue = (val: string) => {
@@ -92,9 +94,12 @@ export function Select({
         selectedValueLabel,
         setSelectedValueLabel,
         rounded,
+        containerRef,
       }}
     >
-      <div className="relative inline-block w-full">{children}</div>
+      <div ref={containerRef} className="relative inline-block w-full">
+        {children}
+      </div>
     </SelectContext.Provider>
   );
 }
@@ -161,9 +166,9 @@ export const SelectTrigger = React.forwardRef<
       onClick={() => setIsOpen(!isOpen)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`relative flex h-10 w-full items-center justify-between bg-transparent px-3 py-2 text-sm transition-all duration-200 outline-none ${className || ''}`.trim()}
+      className={`relative flex min-h-[40px] w-full items-center justify-between bg-transparent px-3 py-2 text-sm transition-all duration-200 outline-none ${className || ''}`.trim()}
     >
-      <div className="font-virgil relative z-10 flex items-center gap-2">
+      <div className="font-virgil relative z-10 flex flex-1 translate-y-[2px] items-center gap-2">
         {children}
       </div>
       <ChevronDown
@@ -179,7 +184,7 @@ export const SelectTrigger = React.forwardRef<
 SelectTrigger.displayName = 'SelectTrigger';
 
 export function SelectValue({ placeholder }: { placeholder?: string }) {
-  const { selectedValueLabel, setPlaceholder } = useSelect();
+  const { value, selectedValueLabel, setPlaceholder } = useSelect();
 
   useEffect(() => {
     if (placeholder) setPlaceholder(placeholder);
@@ -187,7 +192,7 @@ export function SelectValue({ placeholder }: { placeholder?: string }) {
 
   return (
     <span className="truncate">
-      {selectedValueLabel || placeholder || 'Select...'}
+      {selectedValueLabel || value || placeholder || 'Select...'}
     </span>
   );
 }
@@ -198,7 +203,12 @@ export const SelectContent = React.forwardRef<
   HTMLDivElement,
   SelectContentProps
 >(({ children, className, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, rounded } = useSelect();
+  const {
+    isOpen,
+    setIsOpen,
+    rounded,
+    containerRef: rootContainerRef,
+  } = useSelect();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -218,6 +228,8 @@ export const SelectContent = React.forwardRef<
 
     const w = container.offsetWidth;
     const h = container.offsetHeight;
+    if (w === 0 || h === 0) return;
+
     canvas.width = w;
     canvas.height = h;
 
@@ -247,21 +259,20 @@ export const SelectContent = React.forwardRef<
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
       if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
+        rootContainerRef.current &&
+        !rootContainerRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen, setIsOpen]);
-
-  if (!isOpen) return null;
+  }, [isOpen, setIsOpen, rootContainerRef]);
 
   return (
     <div
       ref={containerRef}
+      style={{ display: isOpen ? 'block' : 'none' }}
       className={`absolute top-full left-0 z-50 mt-2 min-w-[8rem] overflow-hidden p-1 ${className || ''}`.trim()}
       {...props}
     >
@@ -308,7 +319,7 @@ export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
         } ${className || ''}`.trim()}
         {...props}
       >
-        <span className="font-virgil w-full truncate text-left">
+        <span className="font-virgil flex-1 translate-y-[2px] truncate text-left">
           {children}
         </span>
       </button>
