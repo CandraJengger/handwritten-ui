@@ -1,0 +1,45 @@
+---
+title: Popover
+description: Displays rich content in a portal, triggered by a button.
+---
+
+import { PopoverDemo, PopoverVariants } from '../../../components/examples/PopoverDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <PopoverDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add popover
+```
+
+## Usage
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+
+<Popover>
+  <PopoverTrigger>Open</PopoverTrigger>
+  <PopoverContent>
+    Place content for the popover here.
+  </PopoverContent>
+</Popover>
+```
+
+## Variants
+
+<PopoverVariants client:load />
+
+## Props
+
+### PopoverContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `align` | `'start' \| 'center' \| 'end'` | `'center'` | The alignment of the popover relative to the trigger. |
+| `sideOffset` | `number` | `4` | The distance in pixels from the trigger. |

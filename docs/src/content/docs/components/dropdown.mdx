@@ -1,0 +1,46 @@
+---
+title: Dropdown
+description: Displays a list of actions or options that a user can choose from.
+---
+
+import { DropdownDemo, DropdownVariants } from '../../../components/examples/DropdownDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <DropdownDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add dropdown
+```
+
+## Usage
+
+```tsx
+import { Dropdown } from '@/components/ui/dropdown';
+
+const items = [
+  { label: 'Profile', onClick: () => {} },
+  { label: 'Settings', onClick: () => {} },
+  { label: 'Logout', onClick: () => {} },
+];
+
+<Dropdown label="Menu" items={items} />
+```
+
+## Variants
+
+<DropdownVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | (required) | The text label for the dropdown button. |
+| `items` | `{ label: string; onClick?: () => void }[]` | (required) | The list of items to display in the menu. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the dropdown button. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'none'` | The border radius of the dropdown button and menu. |

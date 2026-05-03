@@ -5,13 +5,9 @@ export function TabsDemo() {
   return (
     <div className="handwritten-ui flex items-center justify-center p-8">
       <Tabs defaultValue="account" className="w-[400px]">
-        <TabsList client:load className="grid w-full grid-cols-2">
-          <TabsTrigger client:load value="account">
-            Account
-          </TabsTrigger>
-          <TabsTrigger client:load value="password">
-            Password
-          </TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="password">Password</TabsTrigger>
         </TabsList>
         <TabsContent
           value="account"
@@ -40,13 +36,9 @@ export function TabsVariants() {
       <section>
         <h4 className="mb-4 text-sm font-bold">Outline Variant</h4>
         <Tabs defaultValue="tab1" variant="outline">
-          <TabsList client:load>
-            <TabsTrigger client:load value="tab1">
-              Tab 1
-            </TabsTrigger>
-            <TabsTrigger client:load value="tab2">
-              Tab 2
-            </TabsTrigger>
+          <TabsList>
+            <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+            <TabsTrigger value="tab2">Tab 2</TabsTrigger>
           </TabsList>
           <TabsContent value="tab1" className="mt-4">
             Content for Tab 1
@@ -60,13 +52,9 @@ export function TabsVariants() {
       <section>
         <h4 className="mb-4 text-sm font-bold">Filled Variant</h4>
         <Tabs defaultValue="tab1" variant="filled">
-          <TabsList client:load>
-            <TabsTrigger client:load value="tab1">
-              Tab 1
-            </TabsTrigger>
-            <TabsTrigger client:load value="tab2">
-              Tab 2
-            </TabsTrigger>
+          <TabsList>
+            <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+            <TabsTrigger value="tab2">Tab 2</TabsTrigger>
           </TabsList>
           <TabsContent
             value="tab1"

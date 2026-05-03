@@ -14,6 +14,7 @@ import { Slot } from '@radix-ui/react-slot';
 interface PopoverContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const PopoverContext = createContext<PopoverContextType | undefined>(undefined);
@@ -44,6 +45,7 @@ export function Popover({
 }: PopoverProps) {
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const open = controlledOpen ?? internalOpen;
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const setOpen = useCallback(
     (next: boolean) => {
@@ -56,8 +58,10 @@ export function Popover({
   const Comp = asChild ? Slot : 'div';
 
   return (
-    <PopoverContext.Provider value={{ open, setOpen }}>
-      <Comp className="relative inline-block text-left">{children}</Comp>
+    <PopoverContext.Provider value={{ open, setOpen, containerRef }}>
+      <Comp ref={containerRef} className="relative inline-block text-left">
+        {children}
+      </Comp>
     </PopoverContext.Provider>
   );
 }
@@ -110,7 +114,7 @@ export const PopoverContent = React.forwardRef<
     { children, className = '', align = 'center', sideOffset = 4, ...props },
     forwardedRef,
   ) => {
-    const { open, setOpen } = usePopover();
+    const { open, setOpen, containerRef } = usePopover();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
@@ -156,17 +160,27 @@ export const PopoverContent = React.forwardRef<
     useEffect(() => {
       if (!open) return;
 
-      const handleClickOutside = (e: MouseEvent) => {
-        const container = contentRef.current?.closest('.relative.inline-block');
-        if (container && !container.contains(e.target as Node)) {
-          setOpen(false);
-        }
-      };
+      // Small delay to avoid the opening click from triggering close
+      const timerId = setTimeout(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+          const container = containerRef.current;
+          if (container && !container.contains(e.target as Node)) {
+            setOpen(false);
+          }
+        };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () =>
-        document.removeEventListener('mousedown', handleClickOutside);
-    }, [open, setOpen]);
+        document.addEventListener('mousedown', handleClickOutside);
+        // Store cleanup ref
+        cleanupRef.current = () =>
+          document.removeEventListener('mousedown', handleClickOutside);
+      }, 0);
+
+      const cleanupRef = { current: () => {} };
+      return () => {
+        clearTimeout(timerId);
+        cleanupRef.current();
+      };
+    }, [open, setOpen, containerRef]);
 
     // Close on Escape
     useEffect(() => {
@@ -188,12 +202,12 @@ export const PopoverContent = React.forwardRef<
       end: 'right-0',
     };
 
-    const Comp = asChild ? Slot : 'div';
+    const Comp = 'div';
 
     return (
       <Comp
         ref={contentRef}
-        className={`animate-in fade-in-0 zoom-in-95 absolute top-full z-50 w-72 p-4 ${alignClasses[align]} ${className}`.trim()}
+        className={`absolute top-full z-50 w-72 p-4 ${alignClasses[align]} ${className}`.trim()}
         style={{ marginTop: sideOffset }}
         {...props}
       >

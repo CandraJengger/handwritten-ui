@@ -1,0 +1,60 @@
+---
+title: Date Range Picker
+description: A component that allows the user to select a range of dates.
+---
+
+import { DateRangePickerDemo, DateRangePickerVariants } from '../../../components/examples/DateRangePickerDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <DateRangePickerDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+pnpm add react-datepicker date-fns
+npx handwritten-ui add date-range-picker
+```
+
+## Usage
+
+```tsx
+import { DateRangePicker } from '@/components/ui/date-range-picker';
+import { useState } from 'react';
+
+const [startDate, setStartDate] = useState<Date | null>(new Date());
+const [endDate, setEndDate] = useState<Date | null>(null);
+
+const onChange = (dates: [Date | null, Date | null]) => {
+  const [start, end] = dates;
+  setStartDate(start);
+  setEndDate(end);
+};
+
+<DateRangePicker 
+  startDate={startDate}
+  endDate={endDate}
+  onChange={onChange}
+/>
+```
+
+## Variants
+
+<DateRangePickerVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `startDate` | `Date \| null` | — | The start date of the range. |
+| `endDate` | `Date \| null` | — | The end date of the range. |
+| `onChange` | `(dates: [Date \| null, Date \| null]) => void` | — | Callback when the range changes. |
+| `minDate` | `Date` | — | The minimum date that can be selected. |
+| `maxDate` | `Date` | — | The maximum date that can be selected. |
+| `disabled` | `boolean` | `false` | Whether the date range picker is disabled. |
+| `placeholderText` | `string` | `'Pick a date range'` | Placeholder text for the input. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The border style of the input. |
+| `inline` | `boolean` | `false` | Whether to render the date range picker inline. |

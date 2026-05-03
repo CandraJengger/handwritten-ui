@@ -17,11 +17,11 @@ export function BreadcrumbDemo() {
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
-          <BreadcrumbSeparator client:load />
+          <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink href="/components">Components</BreadcrumbLink>
           </BreadcrumbItem>
-          <BreadcrumbSeparator client:load />
+          <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
           </BreadcrumbItem>
@@ -41,13 +41,13 @@ export function BreadcrumbVariants() {
             <BreadcrumbItem>
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator client:load />
-            <BreadcrumbEllipsis client:load />
-            <BreadcrumbSeparator client:load />
+            <BreadcrumbSeparator />
+            <BreadcrumbEllipsis />
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink href="/components">Components</BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator client:load />
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
             </BreadcrumbItem>
@@ -62,7 +62,7 @@ export function BreadcrumbVariants() {
             <BreadcrumbItem>
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator client:load>
+            <BreadcrumbSeparator>
               <span className="mx-1 text-gray-400">/</span>
             </BreadcrumbSeparator>
             <BreadcrumbItem>

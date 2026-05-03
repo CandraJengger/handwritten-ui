@@ -1,0 +1,47 @@
+---
+title: Time Picker
+description: A component that allows the user to select a time.
+---
+
+import { TimePickerDemo, TimePickerVariants } from '../../../components/examples/TimePickerDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <TimePickerDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+pnpm add react-datepicker date-fns
+npx handwritten-ui add time-picker
+```
+
+## Usage
+
+```tsx
+import { TimePicker } from '@/components/ui/time-picker';
+import { useState } from 'react';
+
+const [date, setDate] = useState<Date | null>(new Date());
+
+<TimePicker selected={date} onChange={(date) => setDate(date)} />
+```
+
+## Variants
+
+<TimePickerVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selected` | `Date \| null` | — | The selected time. |
+| `onChange` | `(date: Date \| null) => void` | — | Callback when the time changes. |
+| `disabled` | `boolean` | `false` | Whether the time picker is disabled. |
+| `placeholderText` | `string` | `'Pick a time'` | Placeholder text for the input. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The border style of the input. |
+| `inline` | `boolean` | `false` | Whether to render the time picker inline. |
+| `timeIntervals` | `number` | `15` | The interval between time options in minutes. |

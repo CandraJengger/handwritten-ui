@@ -1,0 +1,43 @@
+---
+title: Float Button
+description: A floating action button (FAB) that triggers the primary action in an application.
+---
+
+import { FloatButtonDemo, FloatButtonVariants } from '../../../components/examples/FloatButtonDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <FloatButtonDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add float-button
+```
+
+## Usage
+
+```tsx
+import { FloatButton } from '@/components/ui/float-button';
+import { Plus } from 'lucide-react';
+
+<FloatButton icon={<Plus />} />
+```
+
+## Variants
+
+<FloatButtonVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `ReactNode` | (required) | The icon to display inside the button. |
+| `label` | `string` | — | Optional text label for an extended FAB. |
+| `variant` | `'filled' \| 'outline'` | `'filled'` | The visual style of the button. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the button. |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'full'` | The border radius of the button. |
+| `border` | `'normal' \| 'rough' \| 'hachure'` | `'rough'` | The sketchiness style of the border. |

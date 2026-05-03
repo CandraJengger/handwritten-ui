@@ -1,0 +1,24 @@
+
+> docs@0.0.1 build
+> astro build
+
+17:51:26 [content] Syncing content
+17:51:26 [content] Synced content
+17:51:26 [types] Generated 487ms
+17:51:26 [build] output: "static"
+17:51:26 [build] mode: "static"
+17:51:26 [build] directory: /Users/candrajengger/Playrgound/products/handwritten-ui/docs/dist/
+17:51:26 [build] Collecting build info...
+17:51:26 [build] ✓ Completed in 624ms.
+17:51:26 [build] Building static entrypoints...
+17:51:28 [ERROR] [vite] ✗ Build failed in 2.17s
+[vite]: Rollup failed to resolve import "react-datepicker/dist/react-datepicker.css" from "/Users/candrajengger/Playrgound/products/handwritten-ui/src/templates/datepicker.tsx".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+  Stack trace:
+    at viteLog (file:///Users/candrajengger/Playrgound/products/handwritten-ui/docs/node_modules/.pnpm/vite@7.3.2_@types+node@24.12.2_jiti@2.6.1_lightningcss@1.32.0/node_modules/vite/dist/node/chunks/config.js:33639:57)
+    at onwarn (file:///Users/candrajengger/Playrgound/products/handwritten-ui/docs/node_modules/.pnpm/@vitejs+plugin-react@5.2.0_vite@7.3.2_@types+node@24.12.2_jiti@2.6.1_lightningcss@1.32.0_/node_modules/@vitejs/plugin-react/dist/index.js:76:7)
+    at onRollupLog (file:///Users/candrajengger/Playrgound/products/handwritten-ui/docs/node_modules/.pnpm/vite@7.3.2_@types+node@24.12.2_jiti@2.6.1_lightningcss@1.32.0/node_modules/vite/dist/node/chunks/config.js:33668:63)
+    at file:///Users/candrajengger/Playrgound/products/handwritten-ui/docs/node_modules/.pnpm/rollup@4.60.2/node_modules/rollup/dist/es/shared/node-entry.js:21383:32
+    at ModuleLoader.handleInvalidResolvedId (file:///Users/candrajengger/Playrgound/products/handwritten-ui/docs/node_modules/.pnpm/rollup@4.60.2/node_modules/rollup/dist/es/shared/node-entry.js:22122:26)

@@ -43,14 +43,25 @@
   background: #f5f5f5;
 }
 
+.handwritten-ui {
+  margin-top: 0 !important;
+}
+
 .sl-markdown-content .handwritten-ui div,
-.sl-markdown-content .handwritten-ui button {
+.sl-markdown-content .handwritten-ui button,
+.sl-markdown-content .handwritten-ui svg {
   margin-top: 0px !important;
 }
 
 .sl-markdown-content canvas {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+
+/* Ensure popover/dropdown content isn't clipped by parent overflow */
+.component-preview,
+.component-preview > * {
+  overflow: visible !important;
 }
 
 .sidebar-content {

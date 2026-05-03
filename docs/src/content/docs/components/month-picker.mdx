@@ -1,0 +1,46 @@
+---
+title: Month Picker
+description: A component that allows the user to select a month and year.
+---
+
+import { MonthPickerDemo, MonthPickerVariants } from '../../../components/examples/MonthPickerDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <MonthPickerDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+pnpm add react-datepicker date-fns
+npx handwritten-ui add month-picker
+```
+
+## Usage
+
+```tsx
+import { MonthPicker } from '@/components/ui/month-picker';
+import { useState } from 'react';
+
+const [date, setDate] = useState<Date | null>(new Date());
+
+<MonthPicker selected={date} onChange={(date) => setDate(date)} />
+```
+
+## Variants
+
+<MonthPickerVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selected` | `Date \| null` | — | The selected date. |
+| `onChange` | `(date: Date \| null) => void` | — | Callback when the date changes. |
+| `disabled` | `boolean` | `false` | Whether the month picker is disabled. |
+| `placeholderText` | `string` | `'Pick a month'` | Placeholder text for the input. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The border style of the input. |
+| `inline` | `boolean` | `false` | Whether to render the month picker inline. |

@@ -24,19 +24,19 @@ export function SliderVariants() {
   return (
     <div className="handwritten-ui flex w-full max-w-sm flex-col gap-10">
       <div>
-        <h4 className="mb-4 text-xs font-bold tracking-wider text-gray-400 uppercase">
+        <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Default
         </h4>
         <Slider defaultValue={[25]} />
       </div>
       <div>
-        <h4 className="mb-4 text-xs font-bold tracking-wider text-gray-400 uppercase">
+        <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Steps (10)
         </h4>
         <Slider defaultValue={[40]} step={10} />
       </div>
       <div>
-        <h4 className="mb-4 text-xs font-bold tracking-wider text-gray-400 uppercase">
+        <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Disabled
         </h4>
         <Slider defaultValue={[75]} disabled />

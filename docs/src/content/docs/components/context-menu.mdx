@@ -1,0 +1,62 @@
+---
+title: Context Menu
+description: Displays a menu to users — typically triggered by a right-click — that contains actions or options.
+---
+
+import { ContextMenuDemo } from '../../../components/examples/ContextMenuDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ContextMenuDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add context-menu
+```
+
+## Usage
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from '@/components/ui/context-menu';
+
+<ContextMenu>
+  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+## Props
+
+### ContextMenuContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes for the content. |
+
+### ContextMenuItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disabled` | `boolean` | `false` | Whether the menu item is disabled. |
+| `inset` | `boolean` | `false` | Whether to add padding for aligned icons. |
+
+### ContextMenuCheckboxItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Whether the item is checked. |
+| `onClick` | `() => void` | — | Callback fired when the item is clicked. |

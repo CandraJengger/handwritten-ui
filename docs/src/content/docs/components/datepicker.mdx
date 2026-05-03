@@ -1,0 +1,48 @@
+---
+title: Date Picker
+description: A component that allows the user to select a date.
+---
+
+import { DatePickerDemo, DatePickerVariants } from '../../../components/examples/DatePickerDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <DatePickerDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+pnpm add react-datepicker date-fns
+npx handwritten-ui add datepicker
+```
+
+## Usage
+
+```tsx
+import { DatePicker } from '@/components/ui/datepicker';
+import { useState } from 'react';
+
+const [date, setDate] = useState<Date | null>(new Date());
+
+<DatePicker selected={date} onChange={(date) => setDate(date)} />
+```
+
+## Variants
+
+<DatePickerVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selected` | `Date \| null` | — | The selected date. |
+| `onChange` | `(date: Date \| null) => void` | — | Callback when the date changes. |
+| `minDate` | `Date` | — | The minimum date that can be selected. |
+| `maxDate` | `Date` | — | The maximum date that can be selected. |
+| `disabled` | `boolean` | `false` | Whether the date picker is disabled. |
+| `placeholderText` | `string` | `'Pick a date'` | Placeholder text for the input. |
+| `border` | `'rough' \| 'normal'` | `'rough'` | The border style of the input. |
+| `inline` | `boolean` | `false` | Whether to render the date picker inline. |

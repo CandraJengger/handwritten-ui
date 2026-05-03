@@ -163,7 +163,7 @@ export const ContextMenuItem = React.forwardRef<
     <button
       ref={ref}
       type="button"
-      className={`font-virgil relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${
+      className={`font-virgil! relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${
         inset ? 'pl-8' : ''
       } ${className}`.trim()}
       onClick={handleClick}
@@ -184,7 +184,7 @@ export const ContextMenuCheckboxItem = React.forwardRef<
     <button
       ref={ref}
       type="button"
-      className={`font-virgil relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${className}`.trim()}
+      className={`font-virgil! relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${className}`.trim()}
       onClick={(e) => {
         onClick?.(e);
       }}
@@ -234,7 +234,7 @@ export const ContextMenuRadioItem = React.forwardRef<
     <button
       ref={ref}
       type="button"
-      className={`font-virgil relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${className}`.trim()}
+      className={`font-virgil! relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none hover:bg-black/5 disabled:pointer-events-none disabled:opacity-50 ${className}`.trim()}
       {...props}
     >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -250,7 +250,7 @@ export const ContextMenuLabel: React.FC<
   React.HTMLAttributes<HTMLDivElement> & { inset?: boolean }
 > = ({ className = '', inset, ...props }) => (
   <div
-    className={`font-virgil px-2 py-1.5 text-sm font-semibold text-[#333333] ${
+    className={`font-virgil! px-2 py-1.5 text-sm font-semibold text-[#333333] ${
       inset ? 'pl-8' : ''
     } ${className}`.trim()}
     {...props}
@@ -323,7 +323,7 @@ export const ContextMenuSubTrigger = React.forwardRef<
         }
       }}
       type="button"
-      className={`font-virgil relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-black/5 data-[state=open]:bg-black/5 ${
+      className={`font-virgil! relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none hover:bg-black/5 data-[state=open]:bg-black/5 ${
         inset ? 'pl-8' : ''
       } ${className}`.trim()}
       onMouseEnter={() => context?.setOpen(true)}
