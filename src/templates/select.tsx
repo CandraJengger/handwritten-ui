@@ -161,9 +161,11 @@ export const SelectTrigger = React.forwardRef<
       onClick={() => setIsOpen(!isOpen)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`font-virgil relative flex h-10 w-full items-center justify-between bg-transparent px-3 py-2 text-sm transition-all duration-200 outline-none ${className || ''}`.trim()}
+      className={`relative flex h-10 w-full items-center justify-between bg-transparent px-3 py-2 text-sm transition-all duration-200 outline-none ${className || ''}`.trim()}
     >
-      <div className="relative z-10 flex items-center gap-2">{children}</div>
+      <div className="font-virgil relative z-10 flex items-center gap-2">
+        {children}
+      </div>
       <ChevronDown
         className={`relative z-10 h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
       />
@@ -301,12 +303,14 @@ export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
           setValue(value);
           setIsOpen(false);
         }}
-        className={`font-virgil relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors duration-200 outline-none select-none hover:bg-black/5 ${
+        className={`relative flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm transition-colors duration-200 outline-none select-none hover:bg-black/5 ${
           isSelected ? 'bg-black/5 font-bold' : ''
         } ${className || ''}`.trim()}
         {...props}
       >
-        {children}
+        <span className="font-virgil w-full truncate text-left">
+          {children}
+        </span>
       </button>
     );
   },
