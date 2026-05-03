@@ -10,7 +10,7 @@ export function ProgressDemo() {
   }, []);
 
   return (
-    <div className="handwritten-ui w-full max-w-md">
+    <div className="sketchy-ui w-full max-w-md">
       <Progress progress={progress} label="Loading data..." />
     </div>
   );
@@ -18,7 +18,7 @@ export function ProgressDemo() {
 
 export function ProgressVariants() {
   return (
-    <div className="handwritten-ui flex w-full max-w-md flex-col gap-8">
+    <div className="sketchy-ui flex w-full max-w-md flex-col gap-8">
       <Progress progress={25} label="Quarterly Progress" />
       <Progress progress={50} height={20} label="Custom Height" />
       <Progress progress={100} label="Completed" />

@@ -5,7 +5,7 @@ export function SliderDemo() {
   const [value, setValue] = useState([50]);
 
   return (
-    <div className="handwritten-ui flex w-full max-w-sm flex-col gap-6">
+    <div className="sketchy-ui flex w-full max-w-sm flex-col gap-6">
       <Slider
         value={value}
         onValueChange={setValue}
@@ -22,7 +22,7 @@ export function SliderDemo() {
 
 export function SliderVariants() {
   return (
-    <div className="handwritten-ui flex w-full max-w-sm flex-col gap-10">
+    <div className="sketchy-ui flex w-full max-w-sm flex-col gap-10">
       <div>
         <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Default

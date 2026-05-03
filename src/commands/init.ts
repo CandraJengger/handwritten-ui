@@ -7,11 +7,11 @@ interface Options {
 }
 
 export default async function init({ template = Template.VITE }: Options) {
-  console.log(chalk.blue('Initializing handwritten ui...'));
+  console.log(chalk.blue('Initializing sketchy ui...'));
 
   const cfg = config[template];
 
   cfg();
 
-  console.log(chalk.green('Handwritten UI initialized successfully!'));
+  console.log(chalk.green('Sketchy UI initialized successfully!'));
 }

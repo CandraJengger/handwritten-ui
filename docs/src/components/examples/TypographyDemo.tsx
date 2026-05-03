@@ -13,7 +13,7 @@ import {
 
 export function TypographyDemo() {
   return (
-    <div className="handwritten-ui flex flex-col gap-4">
+    <div className="sketchy-ui flex flex-col gap-4">
       <Title>The Joke Tax Chronicles</Title>
       <Paragraph>
         Once upon a time, in a far-away land, there was a very peculiar king who
@@ -26,7 +26,7 @@ export function TypographyDemo() {
 
 export function TypographyVariants() {
   return (
-    <div className="handwritten-ui flex w-full max-w-2xl flex-col gap-8">
+    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-8">
       <section>
         <Subtitle>Heading Levels</Subtitle>
         <div className="mt-4 flex flex-col gap-4">

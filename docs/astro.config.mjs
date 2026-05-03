@@ -13,12 +13,12 @@ const templatesDir = path.resolve(__dirname, '../src/templates');
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Handwritten UI',
+      title: 'Sketchy UI',
       social: [
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/CandraJengger/handwritten-ui',
+          href: 'https://github.com/CandraJengger/sketchy-ui',
         },
       ],
       customCss: ['./src/styles/custom.css'],

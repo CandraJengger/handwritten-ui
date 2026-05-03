@@ -3,7 +3,7 @@ import { Badge } from '@templates/badge';
 
 export function BadgeDemo() {
   return (
-    <div className="handwritten-ui flex items-center gap-4">
+    <div className="sketchy-ui flex items-center gap-4">
       <Badge>Default</Badge>
       <Badge variant="outline">Outline</Badge>
       <Badge variant="solid">Solid</Badge>
@@ -14,7 +14,7 @@ export function BadgeDemo() {
 
 export function BadgeVariants() {
   return (
-    <div className="handwritten-ui flex flex-col gap-8">
+    <div className="sketchy-ui flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h4 className="text-xs font-bold tracking-wider text-gray-400 uppercase">
           Colors

@@ -8,7 +8,7 @@ import {
 
 export function AccordionDemo() {
   return (
-    <div className="handwritten-ui flex w-full items-center justify-center p-8">
+    <div className="sketchy-ui flex w-full items-center justify-center p-8">
       <Accordion type="single" className="w-full max-w-md">
         <AccordionItem value="item-1">
           <AccordionTrigger value="item-1">Is it accessible?</AccordionTrigger>
@@ -35,7 +35,7 @@ export function AccordionDemo() {
 
 export function AccordionVariants() {
   return (
-    <div className="handwritten-ui flex w-full max-w-2xl flex-col gap-12">
+    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-12">
       <section>
         <h4 className="mb-4 text-sm font-bold">Multiple Selection</h4>
         <Accordion type="multiple">

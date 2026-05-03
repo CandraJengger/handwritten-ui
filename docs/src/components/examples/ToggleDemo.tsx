@@ -6,7 +6,7 @@ export function ToggleDemo() {
   const [pressed, setPressed] = useState(false);
 
   return (
-    <div className="handwritten-ui flex flex-col items-center gap-6">
+    <div className="sketchy-ui flex flex-col items-center gap-6">
       <Toggle
         aria-label="Toggle bold"
         pressed={pressed}
@@ -24,7 +24,7 @@ export function ToggleDemo() {
 
 export function ToggleVariants() {
   return (
-    <div className="handwritten-ui flex flex-wrap items-center gap-4">
+    <div className="sketchy-ui flex flex-wrap items-center gap-4">
       <Toggle variant="default" aria-label="Toggle default">
         <Bold className="h-4 w-4" />
       </Toggle>

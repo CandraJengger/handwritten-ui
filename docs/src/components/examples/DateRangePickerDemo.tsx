@@ -12,7 +12,7 @@ export function DateRangePickerDemo() {
   };
 
   return (
-    <div className="handwritten-ui flex items-center justify-center p-8">
+    <div className="sketchy-ui flex items-center justify-center p-8">
       <DateRangePicker
         startDate={startDate}
         endDate={endDate}
@@ -27,7 +27,7 @@ export function DateRangePickerVariants() {
   const [endDate, setEndDate] = useState<Date | null>(null);
 
   return (
-    <div className="handwritten-ui flex w-full max-w-2xl flex-col gap-8">
+    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-8">
       <section>
         <h4 className="mb-4 text-sm font-bold">Inline Mode</h4>
         <div className="flex justify-center">

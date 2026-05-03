@@ -5,7 +5,7 @@ export function CheckboxDemo() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="handwritten-ui flex flex-col gap-6">
+    <div className="sketchy-ui flex flex-col gap-6">
       <Checkbox
         id="terms"
         label="Accept terms and conditions"
@@ -22,7 +22,7 @@ export function CheckboxDemo() {
 
 export function CheckboxVariants() {
   return (
-    <div className="handwritten-ui flex flex-col gap-6">
+    <div className="sketchy-ui flex flex-col gap-6">
       <Checkbox label="Default Checkbox" />
       <Checkbox label="Checked by default" defaultChecked />
       <Checkbox label="Disabled" disabled />

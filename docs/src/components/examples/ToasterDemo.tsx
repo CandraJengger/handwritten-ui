@@ -4,7 +4,7 @@ import { Button } from '@templates/button';
 
 export function ToasterDemo() {
   return (
-    <div className="handwritten-ui flex flex-wrap items-center justify-center gap-4 p-8">
+    <div className="sketchy-ui flex flex-wrap items-center justify-center gap-4 p-8">
       <Toaster />
       <Button
         variant="outline"
@@ -26,7 +26,7 @@ export function ToasterDemo() {
 
 export function ToasterVariants() {
   return (
-    <div className="handwritten-ui flex flex-wrap items-center justify-center gap-4">
+    <div className="sketchy-ui flex flex-wrap items-center justify-center gap-4">
       <Button
         variant="outline"
         onClick={() =>

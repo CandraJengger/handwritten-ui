@@ -3,7 +3,7 @@ import { Spinner } from '@templates/spinner';
 
 export function SpinnerDemo() {
   return (
-    <div className="handwritten-ui flex items-center justify-center p-8">
+    <div className="sketchy-ui flex items-center justify-center p-8">
       <Spinner />
     </div>
   );
@@ -11,7 +11,7 @@ export function SpinnerDemo() {
 
 export function SpinnerVariants() {
   return (
-    <div className="handwritten-ui flex flex-col items-center gap-8">
+    <div className="sketchy-ui flex flex-col items-center gap-8">
       <div className="flex items-center gap-8">
         <Spinner size="sm" />
         <Spinner size="md" />

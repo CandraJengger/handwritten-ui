@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 
 export function TooltipDemo() {
   return (
-    <div className="handwritten-ui flex items-center justify-center p-12">
+    <div className="sketchy-ui flex items-center justify-center p-12">
       <Tooltip content="Add new item to your collection">
         <Button variant="outline" className="h-10 w-10 min-w-0 p-2">
           <Plus className="h-5 w-5" />
@@ -17,7 +17,7 @@ export function TooltipDemo() {
 
 export function TooltipVariants() {
   return (
-    <div className="handwritten-ui flex flex-col items-center gap-12">
+    <div className="sketchy-ui flex flex-col items-center gap-12">
       <div className="flex flex-wrap items-center justify-center gap-8">
         <Tooltip side="top" content="Tooltip on top">
           <Button variant="outline" size="sm">

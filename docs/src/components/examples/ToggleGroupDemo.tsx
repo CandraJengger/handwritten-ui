@@ -6,7 +6,7 @@ export function ToggleGroupDemo() {
   const [value, setValue] = useState('bold');
 
   return (
-    <div className="handwritten-ui flex flex-col items-center gap-6">
+    <div className="sketchy-ui flex flex-col items-center gap-6">
       <ToggleGroup type="single" value={value} onValueChange={setValue}>
         <ToggleGroupItem value="bold" aria-label="Toggle bold">
           <Bold className="h-4 w-4" />
@@ -27,7 +27,7 @@ export function ToggleGroupDemo() {
 
 export function ToggleGroupVariants() {
   return (
-    <div className="handwritten-ui flex flex-col gap-10">
+    <div className="sketchy-ui flex flex-col gap-10">
       <div>
         <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Multiple Selection

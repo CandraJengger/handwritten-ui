@@ -6,11 +6,11 @@ import add from './commands/add';
 
 const program = new Command();
 
-program.name('handwritten-ui').description('CLI for handwritten-ui library');
+program.name('sketchy-ui').description('CLI for sketchy-ui library');
 
 program
   .command('init [template]')
-  .description('Initialize handwritten ui')
+  .description('Initialize sketchy ui')
   .action((template) => init({ template }));
 
 program.command('add <component>').description('Add a component').action(add);

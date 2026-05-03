@@ -43,13 +43,13 @@
   background: #f5f5f5;
 }
 
-.handwritten-ui {
+.sketchy-ui {
   margin-top: 0 !important;
 }
 
-.sl-markdown-content .handwritten-ui div,
-.sl-markdown-content .handwritten-ui button,
-.sl-markdown-content .handwritten-ui svg {
+.sl-markdown-content .sketchy-ui div,
+.sl-markdown-content .sketchy-ui button,
+.sl-markdown-content .sketchy-ui svg {
   margin-top: 0px !important;
 }
 

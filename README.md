@@ -1,4 +1,4 @@
-# Handwritten UI 🎨
+# Sketchy UI 🎨
 
 A React-based component library designed to give your web applications a unique, hand-drawn aesthetic. It leverages **Rough.js** to create sketchy, imperfect shapes and the **Virgil** font for that authentic "sketched on a whiteboard" feel. It follows the **shadcn/ui** philosophy: copy the code into your project and customize it to your needs.
 
@@ -19,18 +19,18 @@ For full documentation, including installation instructions, theming guides, and
 
 ## 🚀 Getting Started
 
-Handwritten UI is designed to be used via CLI, adding components directly to your project.
+Sketchy UI is designed to be used via CLI, adding components directly to your project.
 
 ### 1. Initialize your project
 
 ```bash
-npx handwritten-ui@latest init
+npx sketchy-ui@latest init
 ```
 
 ### 2. Add a component
 
 ```bash
-npx handwritten-ui@latest add button
+npx sketchy-ui@latest add button
 ```
 
 _See the [documentation](#-documentation) for detailed installation and setup instructions._
