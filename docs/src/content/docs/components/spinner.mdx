@@ -1,0 +1,38 @@
+---
+title: Spinner
+description: A sketchy loading indicator that rotates.
+---
+
+import { SpinnerDemo, SpinnerVariants } from '../../../components/examples/SpinnerDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <SpinnerDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add spinner
+```
+
+## Usage
+
+```tsx
+import { Spinner } from '@/components/ui/spinner';
+
+<Spinner size="md" />
+```
+
+## Variants
+
+<SpinnerVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the spinner. |
+| `label` | `string` | `'Loading...'` | Accessibility label for the spinner. |

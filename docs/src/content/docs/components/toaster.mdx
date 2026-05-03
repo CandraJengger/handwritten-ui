@@ -1,0 +1,54 @@
+---
+title: Toaster
+description: An opinionated toast component for React, styled with the handwritten aesthetic.
+---
+
+import { ToasterDemo, ToasterVariants } from '../../../components/examples/ToasterDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ToasterDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add toaster
+```
+
+## Usage
+
+1. Add the `Toaster` component to your root layout.
+
+```tsx
+import { Toaster } from '@/components/ui/toaster';
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <main>{children}</main>
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+```
+
+2. Trigger a toast from anywhere in your app.
+
+```tsx
+import { toast } from '@/components/ui/toaster';
+
+toast("Hello World");
+```
+
+## Variants
+
+<ToasterVariants client:load />
+
+## Props
+
+The `Toaster` component accepts all props from [sonner](https://sonner.stevenly.me/getting-started).

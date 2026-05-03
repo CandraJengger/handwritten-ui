@@ -1,0 +1,41 @@
+---
+title: Typography
+description: Styles for headings, paragraphs, lists...etc.
+---
+
+import { TypographyDemo, TypographyVariants } from '../../../components/examples/TypographyDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <TypographyDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add typography
+```
+
+## Usage
+
+```tsx
+import { Title, Paragraph } from '@/components/ui/typography';
+
+<Title>Handwritten UI</Title>
+<Paragraph>Beautifully sketchy components for React.</Paragraph>
+```
+
+## Variants
+
+<TypographyVariants client:load />
+
+## Props
+
+All typography components accept standard HTML attributes and the following:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `font` | `'virgil' \| 'normal'` | `'virgil'` | The font family to use. |
+| `asChild` | `boolean` | `false` | Whether to merge props onto the child element. |

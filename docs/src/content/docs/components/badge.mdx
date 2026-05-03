@@ -1,0 +1,40 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+---
+
+import { BadgeDemo, BadgeVariants } from '../../../components/examples/BadgeDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <BadgeDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add badge
+```
+
+## Usage
+
+```tsx
+import { Badge } from '@/components/ui/badge';
+
+<Badge variant="outline">Badge</Badge>
+```
+
+## Variants
+
+<BadgeVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'outline' \| 'hachure' \| 'solid'` | `'default'` | The visual style. |
+| `color` | `string` | `'#333333'` | The stroke and fill color. |
+| `border` | `'rough' \| 'none'` | `'rough'` | Whether to use hand-drawn borders. |
+| `asChild` | `boolean` | `false` | Whether to merge props onto the child element. |

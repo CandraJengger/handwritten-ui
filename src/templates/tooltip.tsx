@@ -14,7 +14,15 @@ interface TooltipProps extends Omit<
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (
-    { children, content, side = 'top', delay = 300, className = '', ...props },
+    {
+      children,
+      content,
+      side = 'top',
+      delay = 300,
+      className = '',
+      asChild = false,
+      ...props
+    },
     ref,
   ) => {
     const [visible, setVisible] = useState(false);

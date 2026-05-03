@@ -1,0 +1,40 @@
+---
+title: Loader
+description: A sketchy loading indicator with multiple animation styles.
+---
+
+import { LoaderDemo, LoaderVariants } from '../../../components/examples/LoaderDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <LoaderDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add loader
+```
+
+## Usage
+
+```tsx
+import { Loader } from '@/components/ui/loader';
+
+<Loader variant="dots" showLabel label="Syncing..." />
+```
+
+## Variants
+
+<LoaderVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'dots' \| 'pulse' \| 'ping'` | `'dots'` | The animation style. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the loader icons. |
+| `label` | `string` | `'Loading...'` | The text to display or for screen readers. |
+| `showLabel` | `boolean` | `false` | Whether to display the label text visually. |

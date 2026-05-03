@@ -1,0 +1,42 @@
+---
+title: Tooltip
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+---
+
+import { TooltipDemo, TooltipVariants } from '../../../components/examples/TooltipDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <TooltipDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add tooltip
+```
+
+## Usage
+
+```tsx
+import { Tooltip } from '@/components/ui/tooltip';
+
+<Tooltip content="Useful information">
+  <button>Hover me</button>
+</Tooltip>
+```
+
+## Variants
+
+<TooltipVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `ReactNode` (required) | — | The content to display inside the tooltip. |
+| `side` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | The side of the element to display the tooltip on. |
+| `delay` | `number` | `300` | Delay in milliseconds before the tooltip appears. |
+| `asChild` | `boolean` | `false` | Whether to merge props onto the child element. |

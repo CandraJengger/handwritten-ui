@@ -1,0 +1,45 @@
+---
+title: Empty
+description: Empty state component to display when there is no data.
+---
+
+import { EmptyDemo, EmptyVariants } from '../../../components/examples/EmptyDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <EmptyDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add empty
+```
+
+## Usage
+
+```tsx
+import { Empty } from '@/components/ui/empty';
+import { Button } from '@/components/ui/button';
+
+<Empty
+  title="No Data"
+  description="There is no data to display right now."
+  action={<Button>Create New</Button>}
+/>
+```
+
+## Variants
+
+<EmptyVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'No Data Found'` | The heading text. |
+| `description` | `string` | `'There is nothing to show here at the moment.'` | The sub-text description. |
+| `icon` | `ReactNode` | (sketchy illustration) | Custom icon or illustration element. |
+| `action` | `ReactNode` | — | A React node (like a Button) to render below the description. |

@@ -1,0 +1,39 @@
+---
+title: Progress
+description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+---
+
+import { ProgressDemo, ProgressVariants } from '../../../components/examples/ProgressDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <ProgressDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add progress
+```
+
+## Usage
+
+```tsx
+import { Progress } from '@/components/ui/progress';
+
+<Progress progress={50} label="Processing..." />
+```
+
+## Variants
+
+<ProgressVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `progress` | `number` | (required) | The completion value between 0 and 100. |
+| `label` | `string` | — | Text to display above the progress bar. |
+| `height` | `number` | `14` | The thickness of the progress bar. |

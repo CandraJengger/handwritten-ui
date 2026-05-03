@@ -48,7 +48,7 @@ export default defineConfig({
       alias: {
         '@templates': templatesDir,
       },
-      dedupe: ['react', 'react-dom', 'lucide-react', '@radix-ui/react-slot'],
+      dedupe: ['react', 'react-dom', 'lucide-react', '@radix-ui/react-slot', 'sonner'],
     },
   },
 });

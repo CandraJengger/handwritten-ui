@@ -1,0 +1,45 @@
+---
+title: Avatar
+description: An image element with a fall-back for representing the user.
+---
+
+import { AvatarDemo, AvatarVariants } from '../../../components/examples/AvatarDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <AvatarDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add avatar
+```
+
+## Usage
+
+```tsx
+import { Avatar } from '@/components/ui/avatar';
+
+<Avatar
+  src="https://github.com/shadcn.png"
+  alt="@shadcn"
+  fallback="SC"
+/>
+```
+
+## Variants
+
+<AvatarVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | — | The source of the image to display. |
+| `alt` | `string` | `'Avatar'` | Alt text for the image. |
+| `fallback` | `string` | `'?'` | Text to display if the image fails to load. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the avatar. |
+| `shape` | `'circle' \| 'square'` | `'circle'` | The shape of the avatar border. |

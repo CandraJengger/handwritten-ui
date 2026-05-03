@@ -1,0 +1,40 @@
+---
+title: Alert
+description: Displays a callout for user attention.
+---
+
+import { AlertDemo, AlertVariants } from '../../../components/examples/AlertDemo';
+import Preview from '../../../components/Preview.astro';
+
+## Preview
+
+<Preview>
+  <AlertDemo client:load />
+</Preview>
+
+## Installation
+
+```bash
+npx handwritten-ui add alert
+```
+
+## Usage
+
+```tsx
+import { Alert } from '@/components/ui/alert';
+
+<Alert title="Attention">
+  This is an important message for you.
+</Alert>
+```
+
+## Variants
+
+<AlertVariants client:load />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'info' \| 'warning' \| 'error' \| 'success'` | `'default'` | The visual style and icon of the alert. |
+| `title` | `string` | — | An optional title for the alert. |
