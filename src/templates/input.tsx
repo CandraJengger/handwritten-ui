@@ -123,7 +123,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             {...props}
-            className={`font-virgil relative z-[1] w-full bg-transparent transition-colors duration-200 outline-none placeholder:text-gray-400 ${
+            className={`font-virgil placeholder:font-virgil relative z-[1] w-full bg-transparent transition-colors duration-200 outline-none placeholder:text-gray-400 ${
               sizeClasses[size]
             } ${
               border === 'normal'
