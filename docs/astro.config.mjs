@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+import cloudflare from '@astrojs/cloudflare';
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const templatesDir = path.resolve(__dirname, '../src/templates');
 
@@ -51,4 +53,6 @@ export default defineConfig({
       dedupe: ['react', 'react-dom', 'lucide-react', '@radix-ui/react-slot', 'sonner', 'react-datepicker', 'date-fns'],
     },
   },
+
+  adapter: cloudflare(),
 });
