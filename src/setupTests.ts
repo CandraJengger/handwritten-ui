@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 // Mock Canvas getContext with all methods RoughJS needs
 if (typeof HTMLCanvasElement !== 'undefined') {
