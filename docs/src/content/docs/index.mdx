@@ -1,40 +1,61 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Welcome to Sketchy UI
+description: Give your web apps a unique 'sketched on a whiteboard' feel with Sketchy UI, a React component library built with Rough.js.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Beautifully imperfect React components that you can copy and paste into your apps.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /installation/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: View Components
+      link: /components/button/
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid, Icon } from '@astrojs/starlight/components';
+import { Wrapper } from '@templates/wrapper';
 
-## Next steps
+## Why Sketchy UI?
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Wrapper client:visible padding="1.5rem" className="flex flex-col gap-3 h-full">
+    <div className="flex items-center gap-2 text-xl font-semibold">
+      <Icon name="pencil" size="1.2em" />
+      <span>Hand-drawn Aesthetic</span>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300">
+      Powered by **RoughJS** for an authentic, sketchy, hand-drawn look and feel that stands out from generic flat designs.
+    </p>
+  </Wrapper>
+  <Wrapper client:visible padding="1.5rem" className="flex flex-col gap-3 h-full">
+    <div className="flex items-center gap-2 text-xl font-semibold">
+      <Icon name="puzzle" size="1.2em" />
+      <span>Accessible & Composable</span>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300">
+      Built on top of robust primitives (like **Radix UI**) to ensure accessibility, performance, and complete flexibility.
+    </p>
+  </Wrapper>
+  <Wrapper client:visible padding="1.5rem" className="flex flex-col gap-3 h-full">
+    <div className="flex items-center gap-2 text-xl font-semibold">
+      <Icon name="setting" size="1.2em" />
+      <span>Own Your Code</span>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300">
+      No bloated npm packages. Use the **CLI** to add the exact component code directly into your `src/components/ui` folder.
+    </p>
+  </Wrapper>
+  <Wrapper client:visible padding="1.5rem" className="flex flex-col gap-3 h-full">
+    <div className="flex items-center gap-2 text-xl font-semibold">
+      <Icon name="document" size="1.2em" />
+      <span>TypeScript Ready</span>
+    </div>
+    <p className="text-gray-600 dark:text-gray-300">
+      Fully typed components for an excellent developer experience and bug-free implementation.
+    </p>
+  </Wrapper>
 </CardGrid>
