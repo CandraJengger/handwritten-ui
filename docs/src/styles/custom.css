@@ -105,3 +105,26 @@
   font-size: 1.5rem !important;
   letter-spacing: 0.05em;
 }
+
+/* Dark mode specific overrides */
+:root[data-theme='dark'] {
+  --sl-color-text-heading: #ffffff;
+  --sl-color-text-accent: #ffffff;
+}
+
+/* Specific component overrides for dark mode */
+[data-theme='dark'] .site-title {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .hero h1 {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .sl-link-button.primary a {
+  color: #333 !important;
+}
+
+[data-theme='dark'] code {
+  color: #333 !important;
+}
