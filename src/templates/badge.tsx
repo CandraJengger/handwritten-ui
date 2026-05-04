@@ -101,16 +101,16 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
         }}
         {...props}
       >
-        {border !== 'none' && (
-          <canvas
-            ref={canvasRef}
-            className="pointer-events-none absolute top-0 left-0 h-full w-full"
-          />
-        )}
         <span
-          className={`font-virgil relative z-10 text-xs font-bold tracking-wider ${textColor}`}
+          className={`font-virgil relative z-10 flex items-center gap-1 text-xs font-bold tracking-wider ${textColor}`}
           style={{ color: variant === 'solid' ? undefined : color }}
         >
+          {border !== 'none' && (
+            <canvas
+              ref={canvasRef}
+              className="pointer-events-none absolute top-0 left-0 h-full w-full"
+            />
+          )}
           {children}
         </span>
       </Comp>

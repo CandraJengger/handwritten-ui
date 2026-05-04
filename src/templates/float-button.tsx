@@ -77,6 +77,7 @@ export const FloatButton = React.forwardRef<
 
       const w = container.offsetWidth;
       const h = container.offsetHeight;
+      if (w <= 0 || h <= 0) return;
       canvas.width = w;
       canvas.height = h;
 
