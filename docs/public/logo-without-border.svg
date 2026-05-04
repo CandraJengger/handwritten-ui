@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Sketch icon -->
+  <path
+    d="M60 120 
+       Q80 90 120 70 
+       Q140 60 150 70 
+       Q140 85 110 100 
+       Q90 110 80 140 
+       Q75 150 65 140 
+       Q55 130 60 120 Z"
+    fill="#3A3F45"/>
+
+  <!-- Dot -->
+  <circle cx="140" cy="105" r="13" fill="#3A3F45"/>
+</svg>

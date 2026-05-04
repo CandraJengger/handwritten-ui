@@ -13,7 +13,7 @@ const templatesDir = path.resolve(__dirname, '../src/templates');
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Sketchy UI',
+      title: 'SketchyUI',
       social: [
         {
           icon: 'github',
