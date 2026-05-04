@@ -98,3 +98,10 @@
 .animate-fade-in {
   animation: fade-in 0.2s ease-out forwards;
 }
+
+/* Navbar title styling */
+.site-title {
+  font-family: 'Virgil', sans-serif !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.05em;
+}
