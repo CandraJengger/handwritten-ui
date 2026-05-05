@@ -23,7 +23,7 @@
   },
   "keywords": [],
   "author": "cakjengger@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.29.2",
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
