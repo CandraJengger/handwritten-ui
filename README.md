@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/public/logo-sketchy-ui.png" alt="Skeci UI Logo" width="200" />
+  <img src="docs/public/logo-sketchy-ui.png" alt="Skeci UI Logo" width="200" style="background-color: white; border-radius: 8px; padding: 4px;" />
 </p>
 
 # Skeci UI 🎨
