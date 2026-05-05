@@ -52,3 +52,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "v${{ env.VERSION }}"
           git push origin "v${{ env.VERSION }}"
+      - name: Trigger Cloudflare Pages Deployment
+        if: env.TAG_EXISTS == 'false'
+        run: |
+          echo "Triggering Cloudflare Pages build..."
+          curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_WEBHOOK }}"
