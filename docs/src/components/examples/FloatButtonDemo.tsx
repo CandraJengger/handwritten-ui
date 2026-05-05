@@ -4,7 +4,7 @@ import { Plus, MessageSquare, Pencil } from 'lucide-react';
 
 export function FloatButtonDemo() {
   return (
-    <div className="sketchy-ui flex items-center justify-center gap-6 p-8">
+    <div className="skeci-ui flex items-center justify-center gap-6 p-8">
       <FloatButton icon={<Plus />} />
       <FloatButton icon={<Plus />} label="Create New" rounded="lg" />
     </div>
@@ -13,7 +13,7 @@ export function FloatButtonDemo() {
 
 export function FloatButtonVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-12">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-12">
       <section>
         <h4 className="mb-4 text-sm font-bold">Variants</h4>
         <div className="flex items-center gap-6">

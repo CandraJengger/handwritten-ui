@@ -5,7 +5,7 @@ export function RadioGroupDemo() {
   const [value, setValue] = useState('option-one');
 
   return (
-    <div className="sketchy-ui flex flex-col gap-6">
+    <div className="skeci-ui flex flex-col gap-6">
       <RadioGroup value={value} onValueChange={setValue}>
         <RadioGroupItem
           value="option-one"
@@ -30,7 +30,7 @@ export function RadioGroupDemo() {
 
 export function RadioGroupVariants() {
   return (
-    <div className="sketchy-ui flex flex-col gap-8">
+    <div className="skeci-ui flex flex-col gap-8">
       <div>
         <h4 className="mb-4 text-sm font-bold tracking-wider text-gray-400 uppercase">
           Horizontal

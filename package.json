@@ -1,14 +1,14 @@
 {
-  "name": "sketchy-ui",
+  "name": "skeci-ui",
   "version": "1.2.0",
-  "description": "Give your web apps a unique 'sketched on a whiteboard' feel with Sketchy UI—a React component library built with Rough.js.",
+  "description": "Give your web apps a unique 'sketched on a whiteboard' feel with Skeci UI—a React component library built with Rough.js.",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
   ],
   "bin": {
-    "sketchy-ui": "dist/index.js"
+    "skeci-ui": "dist/index.js"
   },
   "scripts": {
     "build": "tsup && npm run copy",

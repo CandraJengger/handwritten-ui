@@ -14,7 +14,7 @@ export function ButtonGroupDemo() {
   const [value, setValue] = React.useState(['center']);
 
   return (
-    <div className="sketchy-ui flex flex-col items-center justify-center gap-4 p-8">
+    <div className="skeci-ui flex flex-col items-center justify-center gap-4 p-8">
       <ButtonGroup value={value} onValueChange={setValue}>
         <ButtonGroupItem value="left" aria-label="Left align">
           <AlignLeft className="h-4 w-4" />
@@ -40,7 +40,7 @@ export function ButtonGroupVariants() {
   const [value, setValue] = React.useState(['bold', 'italic']);
 
   return (
-    <div className="sketchy-ui flex flex-col gap-10">
+    <div className="skeci-ui flex flex-col gap-10">
       <div>
         <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Multiple Selection

@@ -10,7 +10,7 @@ export function InputOTPDemo() {
   const [value, setValue] = useState('');
 
   return (
-    <div className="sketchy-ui flex flex-col items-center gap-6">
+    <div className="skeci-ui flex flex-col items-center gap-6">
       <InputOTP
         maxLength={6}
         value={value}
@@ -36,7 +36,7 @@ export function InputOTPDemo() {
 
 export function InputOTPVariants() {
   return (
-    <div className="sketchy-ui flex flex-col items-center gap-10">
+    <div className="skeci-ui flex flex-col items-center gap-10">
       <div>
         <h4 className="mb-4 text-center text-xs font-bold tracking-wider text-gray-400 uppercase">
           Small Rounded

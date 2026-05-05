@@ -21,7 +21,7 @@ export function ContextMenuDemo() {
   const [person, setPerson] = React.useState('pedro');
 
   return (
-    <div className="sketchy-ui flex w-full items-center justify-center p-20">
+    <div className="skeci-ui flex w-full items-center justify-center p-20">
       <ContextMenu>
         <ContextMenuTrigger className="font-virgil flex h-[150px] w-[300px] items-center justify-center rounded-md border-2 border-dashed border-[#333333] text-sm">
           Right click here

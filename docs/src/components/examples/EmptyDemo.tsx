@@ -5,7 +5,7 @@ import { FileQuestion } from 'lucide-react';
 
 export function EmptyDemo() {
   return (
-    <div className="sketchy-ui flex w-full max-w-md items-center justify-center rounded-xl border-2 border-dashed border-gray-200 p-8">
+    <div className="skeci-ui flex w-full max-w-md items-center justify-center rounded-xl border-2 border-dashed border-gray-200 p-8">
       <Empty
         title="No Products Found"
         description="Try adjusting your filters or search query to find what you're looking for."
@@ -17,7 +17,7 @@ export function EmptyDemo() {
 
 export function EmptyVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-md flex-col items-center gap-12">
+    <div className="skeci-ui flex w-full max-w-md flex-col items-center gap-12">
       <div className="w-full rounded-xl border-2 border-dashed border-gray-200">
         <Empty />
       </div>

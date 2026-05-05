@@ -29,11 +29,11 @@ describe('init command', () => {
     await init({});
 
     expect(config[Template.VITE]).toHaveBeenCalled();
-    expect(consoleSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Initializing sketchy ui...'),
+    expect(vi.mocked(console.log)).toHaveBeenCalledWith(
+      expect.stringContaining('Initializing skeci ui...'),
     );
-    expect(consoleSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Sketchy UI initialized successfully!'),
+    expect(vi.mocked(console.log)).toHaveBeenCalledWith(
+      expect.stringContaining('Skeci UI initialized successfully!'),
     );
     consoleSpy.mockRestore();
   });

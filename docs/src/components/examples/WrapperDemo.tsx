@@ -3,7 +3,7 @@ import { Wrapper } from '@templates/wrapper';
 
 export function WrapperDemo() {
   return (
-    <div className="sketchy-ui flex items-center justify-center p-8">
+    <div className="skeci-ui flex items-center justify-center p-8">
       <Wrapper className="max-w-md">
         <h3 className="mb-2 text-lg font-bold">Hand-drawn Card</h3>
         <p className="text-sm text-[#555555]">
@@ -17,7 +17,7 @@ export function WrapperDemo() {
 
 export function WrapperVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-12">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-12">
       <section>
         <h4 className="mb-4 text-sm font-bold">Fill Styles</h4>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

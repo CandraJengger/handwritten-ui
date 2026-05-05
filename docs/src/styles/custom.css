@@ -43,13 +43,13 @@
   background: #f5f5f5;
 }
 
-.sketchy-ui {
+.skeci-ui {
   margin-top: 0 !important;
 }
 
-.sl-markdown-content .sketchy-ui div,
-.sl-markdown-content .sketchy-ui button,
-.sl-markdown-content .sketchy-ui svg {
+.sl-markdown-content .skeci-ui div,
+.sl-markdown-content .skeci-ui button,
+.sl-markdown-content .skeci-ui svg {
   margin-top: 0px !important;
 }
 

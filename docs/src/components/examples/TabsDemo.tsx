@@ -3,7 +3,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@templates/tabs';
 
 export function TabsDemo() {
   return (
-    <div className="sketchy-ui flex items-center justify-center p-8">
+    <div className="skeci-ui flex items-center justify-center p-8">
       <Tabs defaultValue="account" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="account">Account</TabsTrigger>
@@ -32,7 +32,7 @@ export function TabsDemo() {
 
 export function TabsVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-12">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-12">
       <section>
         <h4 className="mb-4 text-sm font-bold">Outline Variant</h4>
         <Tabs defaultValue="tab1" variant="outline">

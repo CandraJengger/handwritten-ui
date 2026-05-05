@@ -5,7 +5,7 @@ export function RateDemo() {
   const [value, setValue] = useState(3);
 
   return (
-    <div className="sketchy-ui flex flex-col items-center gap-6">
+    <div className="skeci-ui flex flex-col items-center gap-6">
       <Rate value={value} onChange={setValue} />
       <div className="text-sm font-medium text-gray-500">
         Rating: {value} / 5
@@ -16,7 +16,7 @@ export function RateDemo() {
 
 export function RateVariants() {
   return (
-    <div className="sketchy-ui flex flex-col items-center gap-8">
+    <div className="skeci-ui flex flex-col items-center gap-8">
       <div className="flex flex-col items-center gap-2">
         <h4 className="text-xs font-bold tracking-wider text-gray-400 uppercase">
           Sizes

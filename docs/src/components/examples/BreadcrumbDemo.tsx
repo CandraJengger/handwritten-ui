@@ -11,7 +11,7 @@ import {
 
 export function BreadcrumbDemo() {
   return (
-    <div className="sketchy-ui flex items-center justify-center p-8">
+    <div className="skeci-ui flex items-center justify-center p-8">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -33,7 +33,7 @@ export function BreadcrumbDemo() {
 
 export function BreadcrumbVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-8">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-8">
       <section>
         <h4 className="mb-4 text-sm font-bold">With Ellipsis</h4>
         <Breadcrumb>

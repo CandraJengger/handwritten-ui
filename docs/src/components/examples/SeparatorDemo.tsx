@@ -3,7 +3,7 @@ import { Separator } from '@templates/separator';
 
 export function SeparatorDemo() {
   return (
-    <div className="sketchy-ui mx-auto flex w-full max-w-md flex-col items-center justify-center p-8">
+    <div className="skeci-ui mx-auto flex w-full max-w-md flex-col items-center justify-center p-8">
       <div className="space-y-1">
         <h4 className="text-sm leading-none font-bold">Handwritten UI</h4>
         <p className="text-sm text-[#888888]">
@@ -24,7 +24,7 @@ export function SeparatorDemo() {
 
 export function SeparatorVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-12">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-12">
       <section>
         <h4 className="mb-4 text-sm font-bold">Custom Colors & Thickness</h4>
         <div className="flex flex-col gap-6">

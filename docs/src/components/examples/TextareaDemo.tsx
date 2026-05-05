@@ -3,7 +3,7 @@ import { Textarea } from '@templates/textarea';
 
 export function TextareaDemo() {
   return (
-    <div className="sketchy-ui w-full max-w-sm">
+    <div className="skeci-ui w-full max-w-sm">
       <Textarea
         label="Message"
         placeholder="Type your message here..."
@@ -15,7 +15,7 @@ export function TextareaDemo() {
 
 export function TextareaVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-sm flex-col gap-6">
+    <div className="skeci-ui flex w-full max-w-sm flex-col gap-6">
       <Textarea label="Default Textarea" placeholder="Default state" />
       <Textarea label="Filled" variant="filled" placeholder="Filled variant" />
       <Textarea

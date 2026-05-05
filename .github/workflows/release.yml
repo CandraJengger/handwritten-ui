@@ -1,4 +1,4 @@
-name: Release Tagging
+name: Skeci Tagging
 
 on:
   push:

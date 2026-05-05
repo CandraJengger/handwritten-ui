@@ -10,7 +10,7 @@ export function DropdownDemo() {
   ];
 
   return (
-    <div className="sketchy-ui flex items-center justify-center p-8">
+    <div className="skeci-ui flex items-center justify-center p-8">
       <Dropdown label="Options" items={items} />
     </div>
   );
@@ -24,7 +24,7 @@ export function DropdownVariants() {
   ];
 
   return (
-    <div className="sketchy-ui flex w-full max-w-2xl flex-col gap-8">
+    <div className="skeci-ui flex w-full max-w-2xl flex-col gap-8">
       <section>
         <h4 className="mb-4 text-sm font-bold">Sizes</h4>
         <div className="flex items-end gap-4">

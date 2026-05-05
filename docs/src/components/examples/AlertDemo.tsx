@@ -4,9 +4,9 @@ import { Terminal } from 'lucide-react';
 
 export function AlertDemo() {
   return (
-    <div className="sketchy-ui w-full max-w-xl">
+    <div className="skeci-ui w-full max-w-xl">
       <Alert title="Heads up!">
-        You can add components to your app using the npx sketchy-ui command.
+        You can add components to your app using the npx skeci-ui command.
       </Alert>
     </div>
   );
@@ -14,9 +14,9 @@ export function AlertDemo() {
 
 export function AlertVariants() {
   return (
-    <div className="sketchy-ui flex w-full max-w-xl flex-col gap-6">
+    <div className="skeci-ui flex w-full max-w-xl flex-col gap-6">
       <Alert variant="info" title="Info">
-        A new version of sketchy-ui is available.
+        A new version of skeci-ui is available.
       </Alert>
       <Alert variant="success" title="Success">
         Your project has been successfully initialized.
