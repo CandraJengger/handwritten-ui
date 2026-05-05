@@ -66,4 +66,21 @@ export function viteConfig() {
       ),
     );
   }
+
+  const viteConfig = `
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss()
+  ],
+})
+  `;
+
+  fs.writeFileSync('vite.config.ts', viteConfig);
+  console.log(chalk.green('Vite config created!'));
 }

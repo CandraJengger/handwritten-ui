@@ -84,6 +84,9 @@ importers:
       cpx:
         specifier: ^1.5.0
         version: 1.5.0
+      debug:
+        specifier: ^4.4.3
+        version: 4.4.3
       eslint:
         specifier: ^10.2.0
         version: 10.2.0

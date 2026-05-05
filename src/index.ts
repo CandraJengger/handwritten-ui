@@ -9,7 +9,7 @@ const program = new Command();
 program.name('skeci-ui').description('CLI for skeci-ui library');
 
 program
-  .command('init')
+  .command('init [template]')
   .description('Initialize skeci ui')
   .action((template) => init({ template }));
 
