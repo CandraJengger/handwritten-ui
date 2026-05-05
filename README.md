@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="docs/public/logo-sketchy-ui.png" alt="Skeci UI Logo" width="200" style="background-color: white; border-radius: 8px; padding: 4px;" />
-</p>
-
-# Skeci UI 🎨
+# Skeci UI
 
 A React-based component library designed to give your web applications a unique, hand-drawn aesthetic. It leverages **Rough.js** to create sketchy, imperfect shapes and the **Virgil** font for that authentic "sketched on a whiteboard" feel. It follows the **shadcn/ui** philosophy: copy the code into your project and customize it to your needs.
 
