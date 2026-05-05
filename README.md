@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/public/logo-sketchy-ui.png" alt="Skeci UI Logo" width="200" style="background-color: white; border-radius: 8px; padding: 4px;" />
+</p>
+
 # Skeci UI 🎨
 
 A React-based component library designed to give your web applications a unique, hand-drawn aesthetic. It leverages **Rough.js** to create sketchy, imperfect shapes and the **Virgil** font for that authentic "sketched on a whiteboard" feel. It follows the **shadcn/ui** philosophy: copy the code into your project and customize it to your needs.
@@ -6,7 +10,7 @@ A React-based component library designed to give your web applications a unique,
 
 For full documentation, including installation instructions, theming guides, and interactive component previews, please visit our documentation site:
 
-**[Link to Documentation Site]** _(Link will be provided here later)_
+**[https://skeci-ui.pages.dev](https://skeci-ui.pages.dev)**
 
 ## ✨ Features
 
@@ -33,39 +37,8 @@ npx skeci-ui@latest init
 npx skeci-ui@latest add button
 ```
 
-_See the [documentation](#-documentation) for detailed installation and setup instructions._
-
-## 🛠 Tech Stack
-
-- **Framework**: [React 19](https://react.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Graphics**: [Rough.js](https://roughjs.com/)
-- **Build Tool**: [tsup](https://tsup.egoist.dev/)
-- **Documentation**: [Astro Starlight](https://starlight.astro.build/)
-
-## 💻 Development
-
-If you want to contribute or build the library locally:
-
-```bash
-# Install dependencies
-pnpm install
-
-# Build the project
-pnpm build
-
-# Run in development mode
-pnpm dev
-
-# Lint and Format
-pnpm lint
-pnpm format
-
-# Run Docs Locally
-cd docs
-pnpm dev
-```
+_See the [documentation](https://skeci-ui.pages.dev) for detailed installation and setup instructions._
 
 ## 📜 License
 
-ISC License.
+Licensed under the [MIT License](LICENSE).

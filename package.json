@@ -1,6 +1,6 @@
 {
   "name": "skeci-ui",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Give your web apps a unique 'sketched on a whiteboard' feel with Skeci UI—a React component library built with Rough.js.",
   "types": "dist/index.d.ts",
   "sideEffects": false,
@@ -23,7 +23,7 @@
   },
   "keywords": [],
   "author": "cakjengger@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.29.2",
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
