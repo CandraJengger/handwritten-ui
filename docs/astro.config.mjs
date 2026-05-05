@@ -13,6 +13,7 @@ const templatesDir = path.resolve(__dirname, '../src/templates');
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   integrations: [
     starlight({
       title: 'SketchyUI',
